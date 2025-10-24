@@ -6,7 +6,7 @@
     "start": "npx http-server -p 8000 -o",
     "dev": "npx live-server --port=8000 --open=index.html",
     "serve": "python -m http.server 8000",
-    "build": "mkdir -p dist && cp -r index.html *.js *.css components assets dist/"
+    "build": "mkdir -p dist && cp -r index.html App.jsx styles.css components data dist/"
   },
   "keywords": [
     "portfolio",

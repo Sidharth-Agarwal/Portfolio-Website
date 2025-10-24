@@ -1,0 +1,22 @@
+{
+  "name": "sidharth-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Sidharth Agarwal - Software Engineer",
+  "scripts": {
+    "start": "npx http-server -p 8000 -o",
+    "dev": "npx live-server --port=8000 --open=index.html",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "website",
+    "developer"
+  ],
+  "author": "Sidharth Agarwal",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  }
+}

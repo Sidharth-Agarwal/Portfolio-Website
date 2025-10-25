@@ -96,19 +96,69 @@ export const portfolioData = {
   freelance: [
     {
       id: 1,
+      slug: "ecommerce-platform",
       title: "E-Commerce Platform",
       description: "Built a complete e-commerce solution with shopping cart, payment integration, and admin dashboard for inventory management.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe API"],
+      tech: ["React", "Node.js", "MongoDB", "Stripe API", "Express", "Redux"],
       client: "Local Business",
-      year: "2024"
+      year: "2024",
+      fullDescription: "Developed a full-featured e-commerce platform from scratch for a local retail business looking to expand their online presence. The platform includes a customer-facing storefront, admin dashboard for inventory management, and integrated payment processing.",
+      highlights: [
+        "Integrated Stripe payment gateway for secure transactions",
+        "Built responsive admin dashboard with real-time inventory tracking",
+        "Implemented shopping cart with persistent state management",
+        "Created product search and filtering system",
+        "Deployed with CI/CD pipeline for continuous updates"
+      ],
+      impact: [
+        "Increased online sales by 150% in first quarter",
+        "Reduced inventory management time by 60%",
+        "Processed over 500 transactions in first month"
+      ]
     },
     {
       id: 2,
+      slug: "portfolio-website",
       title: "Portfolio Website",
       description: "Designed and developed a responsive portfolio website for a creative professional with custom animations and CMS integration.",
-      tech: ["React", "Tailwind CSS", "Firebase"],
+      tech: ["React", "Tailwind CSS", "Firebase", "Framer Motion"],
       client: "Freelance Designer",
-      year: "2024"
+      year: "2024",
+      fullDescription: "Created a stunning portfolio website for a freelance designer to showcase their creative work. The site features smooth animations, a content management system for easy updates, and a contact form with email notifications.",
+      highlights: [
+        "Custom animations using Framer Motion for engaging user experience",
+        "Firebase integration for dynamic content management",
+        "Responsive design optimized for all devices",
+        "SEO optimization for better search visibility",
+        "Contact form with automated email notifications"
+      ],
+      impact: [
+        "Client reported 200% increase in project inquiries",
+        "Achieved 95+ PageSpeed score",
+        "Featured in design community showcases"
+      ]
+    },
+    {
+      id: 3,
+      slug: "booking-system",
+      title: "Appointment Booking System",
+      description: "Developed a comprehensive booking system for a healthcare clinic with calendar integration, SMS reminders, and patient management.",
+      tech: ["React", "Node.js", "PostgreSQL", "Twilio", "Material-UI"],
+      client: "Healthcare Clinic",
+      year: "2023",
+      fullDescription: "Built an appointment booking system that streamlines patient scheduling for a busy healthcare clinic. The system includes calendar management, automated SMS reminders, patient records, and reporting features.",
+      highlights: [
+        "Real-time calendar with conflict detection",
+        "Automated SMS reminders via Twilio integration",
+        "Patient management with secure data storage",
+        "Reporting dashboard for clinic analytics",
+        "Mobile-responsive interface for on-the-go access"
+      ],
+      impact: [
+        "Reduced no-show rates by 40%",
+        "Saved 10+ hours per week in administrative work",
+        "Improved patient satisfaction scores by 35%"
+      ]
     }
   ],
 

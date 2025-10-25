@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Briefcase, Calendar, Users, ArrowRight } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import SectionTitle from '../common/SectionTitle';
@@ -8,9 +9,14 @@ import { scrollToElement } from '../../utils/helpers';
 
 const Freelance = () => {
   const { freelance } = portfolioData;
+  const navigate = useNavigate();
 
   const handleContactClick = () => {
     scrollToElement('contact');
+  };
+
+  const handleFreelanceClick = (project) => {
+    navigate(`/freelance/${project.slug}`);
   };
 
   return (
@@ -22,7 +28,13 @@ const Freelance = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {freelance.map((project, index) => (
-            <Card key={project.id} hover={false} animate={true} className="group">
+            <Card 
+              key={project.id} 
+              hover={false} 
+              animate={true} 
+              className="group cursor-pointer"
+              onClick={() => handleFreelanceClick(project)}
+            >
               <div className="space-y-5">
                 {/* Header with Index */}
                 <div className="flex items-start justify-between">
@@ -45,13 +57,13 @@ const Freelance = () => {
                 </div>
 
                 {/* Description */}
-                <p className="text-text-secondary leading-relaxed">
+                <p className="text-text-secondary leading-relaxed line-clamp-2">
                   {project.description}
                 </p>
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, idx) => (
+                  {project.tech.slice(0, 4).map((tech, idx) => (
                     <span
                       key={idx}
                       className="px-3 py-1 bg-bg-tertiary border border-border text-accent text-xs font-medium rounded-lg hover:border-accent transition-colors"
@@ -59,6 +71,11 @@ const Freelance = () => {
                       {tech}
                     </span>
                   ))}
+                  {project.tech.length > 4 && (
+                    <span className="px-3 py-1 bg-bg-tertiary border border-border text-text-tertiary text-xs font-medium rounded-lg">
+                      +{project.tech.length - 4}
+                    </span>
+                  )}
                 </div>
 
                 {/* Divider */}
@@ -70,10 +87,13 @@ const Freelance = () => {
                     <Calendar className="w-4 h-4" />
                     <span>{project.year}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-accent font-medium group-hover:gap-3 transition-all">
+                  <button
+                    onClick={() => handleFreelanceClick(project)}
+                    className="flex items-center gap-2 text-accent font-medium group-hover:gap-3 transition-all"
+                  >
                     <span className="text-xs">View Details</span>
                     <ArrowRight className="w-4 h-4" />
-                  </div>
+                  </button>
                 </div>
               </div>
             </Card>

@@ -89,8 +89,8 @@ const ProjectDetail = () => {
             </div>
           </div>
 
-          {/* Project Image */}
-          {project.image && (
+          {/* Project Image - Only show if hasImage is true */}
+          {project.hasImage && project.image && (
             <div className="mb-12 rounded-xl overflow-hidden border border-border">
               <img
                 src={project.image}

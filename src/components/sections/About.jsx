@@ -72,7 +72,7 @@ const About = () => {
                   </div>
                   <h3 className="font-semibold text-text-primary">Experience</h3>
                 </div>
-                <p className="text-text-secondary">3+ Years</p>
+                <p className="text-text-secondary">1.5+ Years</p>
                 <p className="text-text-tertiary text-sm mt-1">Professional development</p>
               </div>
             </div>
@@ -105,7 +105,7 @@ const About = () => {
                   
                   {/* Coursework Tags */}
                   <div className="flex flex-wrap gap-2 mt-4">
-                    {education.coursework.slice(0, 4).map((course, idx) => (
+                    {education.coursework.slice(0, 6).map((course, idx) => (
                       <span
                         key={idx}
                         className="px-3 py-1 bg-bg-tertiary text-text-tertiary text-xs font-medium rounded-full border border-border"
@@ -113,9 +113,9 @@ const About = () => {
                         {course}
                       </span>
                     ))}
-                    {education.coursework.length > 4 && (
+                    {education.coursework.length > 6 && (
                       <span className="px-3 py-1 bg-bg-tertiary text-text-tertiary text-xs font-medium rounded-full border border-border">
-                        +{education.coursework.length - 4} more
+                        +{education.coursework.length - 6} more
                       </span>
                     )}
                   </div>

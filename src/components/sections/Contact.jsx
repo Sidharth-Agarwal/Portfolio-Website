@@ -86,7 +86,7 @@ const Contact = () => {
                 {personal.email}
               </a>
               
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-row gap-3">
                 <Button
                   variant="primary"
                   size="md"
@@ -109,7 +109,7 @@ const Contact = () => {
             </div>
 
             {/* Info Cards */}
-            <div className="space-y-6">
+            <div className="space-y-4">
               {/* Location Card */}
               <div className="bg-card-bg border border-border rounded-2xl p-6 hover:border-accent transition-all duration-300">
                 <div className="flex items-center gap-3 mb-3">
@@ -167,15 +167,6 @@ const Contact = () => {
                   </a>
                 );
               })}
-            </div>
-          </div>
-
-          {/* Bottom Message */}
-          <div className="mt-12 text-center">
-            <div className="inline-block bg-card-bg border border-border rounded-full px-6 py-3">
-              <p className="text-text-tertiary text-sm">
-                📍 Based in {personal.location} • 💼 Available for remote work • ⚡ Quick responder
-              </p>
             </div>
           </div>
         </div>

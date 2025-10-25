@@ -78,15 +78,15 @@ const Hero = () => {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-xl">
-              <div className="text-center p-6 bg-card-bg border border-border rounded-2xl hover:border-accent transition-all duration-300 hover:-translate-y-1">
-                <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">3+</div>
+              <div className="text-center p-4 bg-card-bg border border-border rounded-2xl hover:border-accent transition-all duration-300 hover:-translate-y-1">
+                <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">1.5+</div>
                 <div className="text-sm text-text-tertiary font-medium">Years Experience</div>
               </div>
-              <div className="text-center p-6 bg-card-bg border border-border rounded-2xl hover:border-accent transition-all duration-300 hover:-translate-y-1">
+              <div className="text-center p-4 bg-card-bg border border-border rounded-2xl hover:border-accent transition-all duration-300 hover:-translate-y-1">
                 <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">10+</div>
                 <div className="text-sm text-text-tertiary font-medium">Projects Done</div>
               </div>
-              <div className="text-center p-6 bg-card-bg border border-border rounded-2xl hover:border-accent transition-all duration-300 hover:-translate-y-1">
+              <div className="text-center p-4 bg-card-bg border border-border rounded-2xl hover:border-accent transition-all duration-300 hover:-translate-y-1">
                 <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">700+</div>
                 <div className="text-sm text-text-tertiary font-medium">Students Helped</div>
               </div>

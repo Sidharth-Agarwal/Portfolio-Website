@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -45,7 +45,7 @@ const Footer = () => {
                 <social.icon className="w-5 h-5 text-text-secondary group-hover:text-accent transition-colors" />
               </a>
             ))}
-          </div>
+          </div> */}
 
           {/* Divider */}
           <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>

@@ -110,14 +110,16 @@ const Skills = () => {
                   </div>
                 </div>
                 
-                {/* Skills Tags - Compact Design */}
-                <div className="flex flex-wrap gap-3">
+                {/* Skills Grid - Responsive */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                   {category.items.map((skill, skillIdx) => (
                     <div
                       key={skillIdx}
-                      className="group px-4 py-2.5 bg-card-bg border border-border rounded-lg text-text-primary font-medium text-sm hover:border-accent hover:bg-accent/5 hover:text-accent hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
+                      className="group bg-card-bg border border-border rounded-xl px-4 py-3 text-center hover:border-accent hover:bg-accent/5 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
                     >
-                      {skill}
+                      <span className="text-text-primary font-medium text-sm group-hover:text-accent transition-colors">
+                        {skill}
+                      </span>
                     </div>
                   ))}
                 </div>

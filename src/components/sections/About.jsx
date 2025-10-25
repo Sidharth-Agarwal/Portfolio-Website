@@ -105,7 +105,7 @@ const About = () => {
                   
                   {/* Coursework Tags */}
                   <div className="flex flex-wrap gap-2 mt-4">
-                    {education.coursework.slice(0, 6).map((course, idx) => (
+                    {education.coursework.slice(0, 4).map((course, idx) => (
                       <span
                         key={idx}
                         className="px-3 py-1 bg-bg-tertiary text-text-tertiary text-xs font-medium rounded-full border border-border"
@@ -113,9 +113,9 @@ const About = () => {
                         {course}
                       </span>
                     ))}
-                    {education.coursework.length > 6 && (
+                    {education.coursework.length > 4 && (
                       <span className="px-3 py-1 bg-bg-tertiary text-text-tertiary text-xs font-medium rounded-full border border-border">
-                        +{education.coursework.length - 6} more
+                        +{education.coursework.length - 4} more
                       </span>
                     )}
                   </div>

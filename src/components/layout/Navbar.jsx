@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
+import { useScrollProgress } from '../../hooks/useScrollProgress';
 import ThemeToggle from '../common/ThemeToggle';
 
 const Navbar = () => {
@@ -14,6 +15,7 @@ const Navbar = () => {
 
   const sectionIds = ['about', 'experience', 'projects', 'freelance', 'skills', 'contact'];
   const activeSection = useScrollSpy(sectionIds);
+  const scrollProgress = useScrollProgress();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,10 +67,24 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-bg-primary/80 backdrop-blur-xl shadow-lg border-b border-border'
-          : 'bg-bg-primary/50 backdrop-blur-sm border-b border-transparent'
+          ? 'bg-bg-primary/95 backdrop-blur-xl shadow-lg'
+          : 'bg-bg-primary/50 backdrop-blur-sm'
       }`}
     >
+      {/* Scroll Progress Bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-border/30">
+        <div
+          className="h-full bg-gradient-to-r from-accent to-accent-light transition-all duration-150 ease-out will-change-transform"
+          style={{ 
+            width: `${scrollProgress}%`,
+            transform: 'translateZ(0)' // Force GPU acceleration
+          }}
+        >
+          {/* Glow effect on the progress bar */}
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-20 h-1 bg-gradient-to-l from-accent-light to-transparent blur-sm"></div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}

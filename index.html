@@ -1,46 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sidharth Agarwal - Software Engineer Portfolio" />
+    <meta name="keywords" content="Software Engineer, Full Stack Developer, React, Node.js, Portfolio" />
+    <meta name="author" content="Sidharth Agarwal" />
     <title>Sidharth Agarwal - Software Engineer</title>
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- React and ReactDOM via CDN -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <!-- Babel Standalone for JSX transformation -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="root"></div>
-    
-    <!-- Load content data -->
-    <script type="text/babel" src="data/content.js"></script>
-    
-    <!-- Load components -->
-    <script type="text/babel" src="components/ThemeToggle.jsx"></script>
-    <script type="text/babel" src="components/Navbar.jsx"></script>
-    <script type="text/babel" src="components/Hero.jsx"></script>
-    <script type="text/babel" src="components/About.jsx"></script>
-    <script type="text/babel" src="components/Experience.jsx"></script>
-    <script type="text/babel" src="components/Projects.jsx"></script>
-    <script type="text/babel" src="components/Freelance.jsx"></script>
-    <script type="text/babel" src="components/Skills.jsx"></script>
-    <script type="text/babel" src="components/Contact.jsx"></script>
-    
-    <!-- Main App -->
-    <script type="text/babel" src="App.jsx"></script>
-    
-    <script>
-        // Initialize Lucide icons after DOM load
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
-    </script>
-</body>
+    <script type="module" src="/src/index.jsx"></script>
+  </body>
 </html>

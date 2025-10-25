@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Code2, Layout, Server, Database, Cloud, Wrench, CheckCircle2 } from 'lucide-react';
+import { Code2, Layout, Server, Database, Cloud, Wrench } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import SectionTitle from '../common/SectionTitle';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
@@ -110,19 +110,14 @@ const Skills = () => {
                   </div>
                 </div>
                 
-                {/* Skills Grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {/* Skills Tags - Compact Design */}
+                <div className="flex flex-wrap gap-3">
                   {category.items.map((skill, skillIdx) => (
                     <div
                       key={skillIdx}
-                      className="group bg-card-bg border border-border rounded-xl px-4 py-4 text-center hover:border-accent hover:shadow-lg transition-all duration-300 hover:-translate-y-2 cursor-default"
+                      className="group px-4 py-2.5 bg-card-bg border border-border rounded-lg text-text-primary font-medium text-sm hover:border-accent hover:bg-accent/5 hover:text-accent hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
                     >
-                      <div className="flex flex-col items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <span className="text-text-primary font-medium text-sm group-hover:text-accent transition-colors">
-                          {skill}
-                        </span>
-                      </div>
+                      {skill}
                     </div>
                   ))}
                 </div>

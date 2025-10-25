@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Users, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Calendar, Users, TrendingUp, CheckCircle2, FolderKanban } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import Button from '../components/common/Button';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -66,6 +66,26 @@ const FreelanceDetail = () => {
               </div>
             </div>
           </div>
+
+          {/* Project Image or Placeholder */}
+          {project.hasImage ? (
+            project.image && (
+              <div className="mb-12 rounded-2xl overflow-hidden border border-border">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-auto"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </div>
+            )
+          ) : (
+            <div className="mb-12 rounded-2xl overflow-hidden border border-border bg-gradient-to-br from-accent/10 to-accent-light/10 h-80 flex items-center justify-center">
+              <FolderKanban className="w-32 h-32 text-accent/30" />
+            </div>
+          )}
 
           {/* Description */}
           <div className="mb-12">

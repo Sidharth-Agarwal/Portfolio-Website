@@ -62,6 +62,7 @@ export const portfolioData = {
       github: "https://github.com/sidharthagarwal",
       live: null,
       featured: true,
+      hasImage: false, // Set to true when you have an image
       image: "/projects/react-projects.jpg",
       fullDescription: "A collection of production-ready React applications demonstrating modern web development practices, state management, and real-time data handling.",
       highlights: [
@@ -81,6 +82,7 @@ export const portfolioData = {
       github: "https://github.com/sidharthagarwal",
       live: null,
       featured: true,
+      hasImage: false, // Set to true when you have an image
       image: "/projects/paytm-clone.jpg",
       fullDescription: "A comprehensive payment platform clone featuring secure transactions, wallet management, and microservices architecture for scalable payment processing.",
       highlights: [
@@ -102,6 +104,8 @@ export const portfolioData = {
       tech: ["React", "Node.js", "MongoDB", "Stripe API", "Express", "Redux"],
       client: "Local Business",
       year: "2024",
+      hasImage: false, // Set to true when you have an image
+      image: "/freelance/ecommerce-platform.jpg",
       fullDescription: "Developed a full-featured e-commerce platform from scratch for a local retail business looking to expand their online presence. The platform includes a customer-facing storefront, admin dashboard for inventory management, and integrated payment processing.",
       highlights: [
         "Integrated Stripe payment gateway for secure transactions",
@@ -124,6 +128,8 @@ export const portfolioData = {
       tech: ["React", "Tailwind CSS", "Firebase", "Framer Motion"],
       client: "Freelance Designer",
       year: "2024",
+      hasImage: false, // Set to true when you have an image
+      image: "/freelance/portfolio-website.jpg",
       fullDescription: "Created a stunning portfolio website for a freelance designer to showcase their creative work. The site features smooth animations, a content management system for easy updates, and a contact form with email notifications.",
       highlights: [
         "Custom animations using Framer Motion for engaging user experience",
@@ -146,6 +152,8 @@ export const portfolioData = {
       tech: ["React", "Node.js", "PostgreSQL", "Twilio", "Material-UI"],
       client: "Healthcare Clinic",
       year: "2023",
+      hasImage: false, // Set to true when you have an image
+      image: "/freelance/booking-system.jpg",
       fullDescription: "Built an appointment booking system that streamlines patient scheduling for a busy healthcare clinic. The system includes calendar management, automated SMS reminders, patient records, and reporting features.",
       highlights: [
         "Real-time calendar with conflict detection",

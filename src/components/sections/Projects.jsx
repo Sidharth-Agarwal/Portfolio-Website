@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Github, ExternalLink, ArrowRight, Star } from 'lucide-react';
+import { Github, ExternalLink, ArrowRight, Star, Code2 } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import SectionTitle from '../common/SectionTitle';
 import Card from '../common/Card';
@@ -44,17 +44,24 @@ const Projects = () => {
                 </div>
               )}
 
-              {/* Project Image */}
-              {project.image && (
-                <div className="relative -mx-6 -mt-6 h-48 bg-gradient-to-br from-accent/20 to-accent-light/20 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                    }}
-                  />
+              {/* Project Image or Placeholder */}
+              {project.hasImage ? (
+                project.image && (
+                  <div className="relative -mx-8 -mt-8 h-48 bg-gradient-to-br from-accent/20 to-accent-light/20 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card-bg/90 to-transparent"></div>
+                  </div>
+                )
+              ) : (
+                <div className="relative -mx-8 -mt-8 h-48 bg-gradient-to-br from-accent/10 to-accent-light/10 overflow-hidden flex items-center justify-center">
+                  <Code2 className="w-20 h-20 text-accent/30 group-hover:text-accent/50 group-hover:scale-110 transition-all duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-card-bg/90 to-transparent"></div>
                 </div>
               )}

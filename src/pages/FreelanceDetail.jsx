@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Users, TrendingUp, CheckCircle2, FolderKanban } from 'lucide-react';
+import { ArrowLeft, Calendar, Users, FolderKanban } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import Button from '../components/common/Button';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -34,43 +34,40 @@ const FreelanceDetail = () => {
         {/* Back Button */}
         <Link
           to="/#freelance"
-          className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors mb-8 group"
+          className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors mb-8"
         >
-          <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+          <ArrowLeft className="w-5 h-5" />
           <span>Back to Freelance Work</span>
         </Link>
 
         {/* Project Header */}
         <div className="max-w-4xl mx-auto">
-          {/* Title Section */}
-          <div className="mb-12">
-            {/* Client Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full mb-4">
-              <Users className="w-4 h-4 text-accent" />
-              <span className="text-accent text-sm font-semibold">{project.client}</span>
-            </div>
-
-            <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+          <div className="mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-4">
               {project.title}
             </h1>
             
             {/* Meta Info */}
-            <div className="flex flex-wrap gap-6 text-text-tertiary mb-8">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                <span className="font-medium">{project.year}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Users className="w-5 h-5" />
-                <span className="font-medium">{project.client}</span>
-              </div>
+            <div className="flex flex-wrap gap-4 text-text-tertiary">
+              {project.year && (
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  <span>{project.year}</span>
+                </div>
+              )}
+              {project.client && (
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4" />
+                  <span>{project.client}</span>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Project Image or Placeholder */}
           {project.hasImage ? (
             project.image && (
-              <div className="mb-12 rounded-2xl overflow-hidden border border-border">
+              <div className="mb-12 rounded-xl overflow-hidden border border-border">
                 <img
                   src={project.image}
                   alt={project.title}
@@ -82,15 +79,14 @@ const FreelanceDetail = () => {
               </div>
             )
           ) : (
-            <div className="mb-12 rounded-2xl overflow-hidden border border-border bg-gradient-to-br from-accent/10 to-accent-light/10 h-80 flex items-center justify-center">
+            <div className="mb-12 rounded-xl overflow-hidden border border-border bg-gradient-to-br from-accent/10 to-accent-light/10 h-80 flex items-center justify-center">
               <FolderKanban className="w-32 h-32 text-accent/30" />
             </div>
           )}
 
           {/* Description */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-text-primary mb-4 flex items-center gap-3">
-              <div className="w-1 h-8 bg-gradient-to-b from-accent to-accent-light rounded-full"></div>
+            <h2 className="text-2xl font-bold text-text-primary mb-4">
               Overview
             </h2>
             <p className="text-lg text-text-secondary leading-relaxed">
@@ -101,68 +97,51 @@ const FreelanceDetail = () => {
           {/* Key Highlights */}
           {project.highlights && (
             <div className="mb-12">
-              <h2 className="text-2xl font-bold text-text-primary mb-6 flex items-center gap-3">
-                <div className="w-1 h-8 bg-gradient-to-b from-accent to-accent-light rounded-full"></div>
-                Key Features
+              <h2 className="text-2xl font-bold text-text-primary mb-4">
+                Key Highlights
               </h2>
-              <div className="grid gap-4">
+              <ul className="space-y-3">
                 {project.highlights.map((highlight, idx) => (
-                  <div
+                  <li
                     key={idx}
-                    className="flex items-start gap-4 p-4 bg-card-bg border border-border rounded-xl hover:border-accent transition-all duration-300"
+                    className="text-text-secondary leading-relaxed pl-6 relative before:content-['✓'] before:absolute before:left-0 before:text-accent before:font-bold"
                   >
-                    <div className="flex-shrink-0 mt-1">
-                      <div className="p-2 bg-accent/10 rounded-lg">
-                        <CheckCircle2 className="w-5 h-5 text-accent" />
-                      </div>
-                    </div>
-                    <p className="text-text-secondary leading-relaxed flex-1">
-                      {highlight}
-                    </p>
-                  </div>
+                    {highlight}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           )}
 
-          {/* Impact Section */}
+          {/* Impact */}
           {project.impact && (
             <div className="mb-12">
-              <h2 className="text-2xl font-bold text-text-primary mb-6 flex items-center gap-3">
-                <div className="w-1 h-8 bg-gradient-to-b from-accent to-accent-light rounded-full"></div>
+              <h2 className="text-2xl font-bold text-text-primary mb-4">
                 Project Impact
               </h2>
-              <div className="grid gap-4">
+              <ul className="space-y-3">
                 {project.impact.map((item, idx) => (
-                  <div
+                  <li
                     key={idx}
-                    className="flex items-start gap-4 p-4 bg-gradient-to-br from-accent/5 to-accent-light/5 border border-accent/20 rounded-xl"
+                    className="text-text-secondary leading-relaxed pl-6 relative before:content-['▹'] before:absolute before:left-0 before:text-accent before:font-bold"
                   >
-                    <div className="flex-shrink-0 mt-1">
-                      <div className="p-2 bg-accent/10 rounded-lg">
-                        <TrendingUp className="w-5 h-5 text-accent" />
-                      </div>
-                    </div>
-                    <p className="text-text-secondary leading-relaxed flex-1 font-medium">
-                      {item}
-                    </p>
-                  </div>
+                    {item}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           )}
 
           {/* Technologies */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-text-primary mb-6 flex items-center gap-3">
-              <div className="w-1 h-8 bg-gradient-to-b from-accent to-accent-light rounded-full"></div>
+            <h2 className="text-2xl font-bold text-text-primary mb-4">
               Technologies Used
             </h2>
             <div className="flex flex-wrap gap-3">
               {project.tech.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="px-4 py-2 bg-card-bg border border-border rounded-xl text-accent font-medium hover:border-accent hover:bg-accent/5 transition-all duration-300"
+                  className="px-4 py-2 bg-bg-secondary border border-border rounded-lg text-accent font-medium hover:border-accent transition-colors"
                 >
                   {tech}
                 </span>
@@ -171,12 +150,12 @@ const FreelanceDetail = () => {
           </div>
 
           {/* CTA */}
-          <div className="bg-gradient-to-br from-accent/10 to-accent-light/5 border border-accent/20 rounded-2xl p-10 text-center">
+          <div className="bg-gradient-to-r from-accent/10 to-accent/5 border border-accent/20 rounded-xl p-8 text-center">
             <h3 className="text-2xl font-bold text-text-primary mb-4">
-              Need similar work done?
+              Interested in similar projects?
             </h3>
-            <p className="text-text-secondary mb-6 max-w-xl mx-auto">
-              I'm available for freelance projects. Let's discuss how I can help you achieve your goals.
+            <p className="text-text-secondary mb-6">
+              Let's discuss how I can help bring your ideas to life.
             </p>
             <Link to="/#contact">
               <Button variant="primary" size="lg">

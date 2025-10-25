@@ -1,5 +1,5 @@
 import React from 'react';
-import { Briefcase, Calendar } from 'lucide-react';
+import { Briefcase, Calendar, Users, ArrowRight } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import SectionTitle from '../common/SectionTitle';
 import Card from '../common/Card';
@@ -14,20 +14,37 @@ const Freelance = () => {
   };
 
   return (
-    <section id="freelance" className="section py-20 bg-bg-secondary">
+    <section id="freelance" className="section py-24 bg-bg-primary relative">
       <div className="container mx-auto px-4">
         <SectionTitle subtitle="Client projects and freelance work">
           Freelance Work
         </SectionTitle>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {freelance.map((project) => (
-            <Card key={project.id} hover={true} animate={true}>
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-text-primary">
-                  {project.title}
-                </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          {freelance.map((project, index) => (
+            <Card key={project.id} hover={false} animate={true} className="group">
+              <div className="space-y-5">
+                {/* Header with Index */}
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-text-primary group-hover:text-accent transition-colors mb-2">
+                      {project.title}
+                    </h3>
+                    
+                    {/* Client Badge */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/10 border border-accent/20 rounded-full">
+                      <Users className="w-3 h-3 text-accent" />
+                      <span className="text-accent text-xs font-semibold">{project.client}</span>
+                    </div>
+                  </div>
 
+                  {/* Index Number */}
+                  <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-accent/10 to-accent-light/10 border border-accent/20 rounded-xl">
+                    <span className="text-xl font-bold text-accent">{String(index + 1).padStart(2, '0')}</span>
+                  </div>
+                </div>
+
+                {/* Description */}
                 <p className="text-text-secondary leading-relaxed">
                   {project.description}
                 </p>
@@ -37,22 +54,25 @@ const Freelance = () => {
                   {project.tech.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-bg-tertiary text-accent text-sm font-medium rounded-full"
+                      className="px-3 py-1 bg-bg-tertiary border border-border text-accent text-xs font-medium rounded-lg hover:border-accent transition-colors"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
+                {/* Divider */}
+                <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+
                 {/* Meta Info */}
-                <div className="flex items-center justify-between text-sm text-text-tertiary pt-4 border-t border-border">
-                  <div className="flex items-center gap-2">
-                    <Briefcase className="w-4 h-4" />
-                    <span>{project.client}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2 text-text-tertiary">
                     <Calendar className="w-4 h-4" />
                     <span>{project.year}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-accent font-medium group-hover:gap-3 transition-all">
+                    <span className="text-xs">View Details</span>
+                    <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
               </div>
@@ -60,18 +80,32 @@ const Freelance = () => {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-16">
-          <p className="text-text-secondary text-lg mb-6">
-            Interested in working together?
-          </p>
-          <Button
-            variant="primary"
-            size="lg"
-            onClick={handleContactClick}
-          >
-            Let's Talk
-          </Button>
+        {/* CTA Section */}
+        <div className="mt-16 max-w-3xl mx-auto">
+          <div className="relative overflow-hidden bg-gradient-to-br from-accent/10 via-accent-light/10 to-accent/5 border border-accent/20 rounded-3xl p-10 text-center">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent-light/20 rounded-full blur-3xl"></div>
+            
+            <div className="relative z-10">
+              <Briefcase className="w-12 h-12 text-accent mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-text-primary mb-3">
+                Interested in working together?
+              </h3>
+              <p className="text-text-secondary mb-6 max-w-xl mx-auto">
+                I'm available for freelance projects and consulting work. Let's discuss how I can help bring your ideas to life.
+              </p>
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={handleContactClick}
+                icon={ArrowRight}
+                className="btn-hover"
+              >
+                Let's Talk
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

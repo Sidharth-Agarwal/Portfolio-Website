@@ -25,12 +25,10 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Close mobile menu on route change
     setIsMobileMenuOpen(false);
   }, [location]);
 
   const scrollToSection = (sectionId) => {
-    // If not on home page, navigate to home first
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -65,20 +63,31 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-bg-primary/95 backdrop-blur-md shadow-lg'
-          : 'bg-bg-primary'
-      } border-b border-border`}
+          ? 'bg-bg-primary/80 backdrop-blur-xl shadow-lg border-b border-border'
+          : 'bg-bg-primary/50 backdrop-blur-sm border-b border-transparent'
+      }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link
             to="/"
-            className="text-2xl font-bold text-text-primary hover:text-accent transition-colors"
+            className="group relative"
           >
-            SA
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="text-2xl font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">
+                  SA
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent to-accent-light opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
+              </div>
+              <div className="h-8 w-px bg-border"></div>
+              <span className="text-sm font-medium text-text-tertiary group-hover:text-accent transition-colors">
+                Portfolio
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -87,15 +96,22 @@ const Navbar = () => {
               <button
                 key={link.section}
                 onClick={() => scrollToSection(link.section)}
-                className={`text-sm font-medium transition-colors cursor-pointer ${
+                className={`relative text-sm font-medium transition-colors cursor-pointer group ${
                   activeSection === link.section
                     ? 'text-accent'
                     : 'text-text-secondary hover:text-accent'
                 }`}
               >
                 {link.label}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all duration-300 ${
+                    activeSection === link.section ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                ></span>
               </button>
             ))}
+            
+            {/* Theme Toggle */}
             <ThemeToggle />
           </div>
 
@@ -104,7 +120,7 @@ const Navbar = () => {
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-text-primary hover:text-accent transition-colors"
+              className="p-2 text-text-primary hover:text-accent transition-colors rounded-lg hover:bg-bg-secondary"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -118,16 +134,16 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in">
-            <div className="flex flex-col space-y-4">
+          <div className="md:hidden py-6 border-t border-border animate-fade-in">
+            <div className="flex flex-col space-y-1">
               {navLinks.map((link) => (
                 <button
                   key={link.section}
                   onClick={() => scrollToSection(link.section)}
-                  className={`text-left px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`text-left px-4 py-3 text-sm font-medium transition-all rounded-xl ${
                     activeSection === link.section
-                      ? 'text-accent bg-bg-secondary rounded-lg'
-                      : 'text-text-secondary hover:text-accent'
+                      ? 'text-accent bg-accent/10 border border-accent/20'
+                      : 'text-text-secondary hover:text-accent hover:bg-bg-secondary'
                   }`}
                 >
                   {link.label}

@@ -14,12 +14,12 @@ const Button = ({
   iconPosition = 'right',
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group';
   
   const variants = {
-    primary: 'bg-accent text-white hover:bg-accent-hover hover:-translate-y-1 shadow-lg hover:shadow-xl',
-    secondary: 'bg-transparent text-text-primary border-2 border-border hover:border-accent hover:text-accent',
-    outline: 'bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-white',
+    primary: 'bg-accent text-white hover:bg-accent-hover hover:-translate-y-1 shadow-lg hover:shadow-2xl hover:shadow-accent/50 border border-accent',
+    secondary: 'bg-transparent text-text-primary border-2 border-border hover:border-accent hover:text-accent hover:bg-accent/5',
+    outline: 'bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-white hover:shadow-lg hover:shadow-accent/30',
   };
 
   const sizes = {
@@ -32,9 +32,14 @@ const Button = ({
 
   const content = (
     <>
-      {Icon && iconPosition === 'left' && <Icon className="w-5 h-5" />}
-      {children}
-      {Icon && iconPosition === 'right' && <Icon className="w-5 h-5" />}
+      {/* Shine effect on hover */}
+      {variant === 'primary' && (
+        <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+      )}
+      
+      {Icon && iconPosition === 'left' && <Icon className="w-5 h-5 relative z-10 group-hover:scale-110 transition-transform" />}
+      <span className="relative z-10">{children}</span>
+      {Icon && iconPosition === 'right' && <Icon className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />}
     </>
   );
 

@@ -13,7 +13,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const sectionIds = ['about', 'experience', 'projects', 'freelance', 'skills', 'contact'];
+  const sectionIds = ['about', 'experience', 'projects', 'consulting', 'skills', 'contact'];
   const activeSection = useScrollSpy(sectionIds);
   const scrollProgress = useScrollProgress();
 
@@ -58,7 +58,7 @@ const Navbar = () => {
     { label: 'About', section: 'about' },
     { label: 'Experience', section: 'experience' },
     { label: 'Projects', section: 'projects' },
-    { label: 'Freelance', section: 'freelance' },
+    { label: 'Consulting', section: 'consulting' },
     { label: 'Skills', section: 'skills' },
     { label: 'Contact', section: 'contact' },
   ];

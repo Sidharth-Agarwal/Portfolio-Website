@@ -9,7 +9,7 @@ export const portfolioData = {
     github: "https://github.com/sidharth-agarwal",
     leetcode: "https://leetcode.com/sidharth_2003",
     tagline: "Full-Stack Developer specializing in scalable web applications",
-    bio: "Passionate Software Engineer with expertise in building high-performance web applications. I specialize in backend development with Node.js and Python, and love creating elegant user experiences with React. Currently working on multiple projects at ADA Digital Analytics, where I architect secure, scalable solutions that make a real impact. Additionally, I work on freelance project to keep those mind muscles engaged on different set of technologies."
+    bio: "Passionate Software Engineer with expertise in building high-performance web applications. I specialize in backend development with Node.js and Python, and love creating elegant user experiences with React. Currently working on multiple projects at ADA Digital Analytics, where I architect secure, scalable solutions that make a real impact. Additionally, I work on consulting projects to keep those mind muscles engaged on different set of technologies."
   },
 
   experience: [
@@ -62,10 +62,9 @@ export const portfolioData = {
       github: "https://github.com/sidharthagarwal",
       live: null,
       featured: true,
-      hasImage: false, // Set to true when you have an image
+      hasImage: false,
       image: "/projects/react-projects.jpg",
       fullDescription: "A collection of production-ready React applications demonstrating modern web development practices, state management, and real-time data handling.",
-      tech: ["MongoDB", "Express", "React", "Node.js", "JWT", "Microservices"],
       highlights: [
         "Custom hooks for data fetching and state management",
         "Redux for global state management",
@@ -83,7 +82,7 @@ export const portfolioData = {
       github: "https://github.com/sidharthagarwal",
       live: null,
       featured: true,
-      hasImage: false, // Set to true when you have an image
+      hasImage: false,
       image: "/projects/paytm-clone.jpg",
       fullDescription: "A comprehensive payment platform clone featuring secure transactions, wallet management, and microservices architecture for scalable payment processing.",
       highlights: [
@@ -96,7 +95,7 @@ export const portfolioData = {
     }
   ],
 
-  freelance: [
+  consulting: [
     {
       "id": 1,
       "slug": "flextiles-erp-system",
@@ -114,7 +113,7 @@ export const portfolioData = {
       "client": "Flextiles Print Manufacturing",
       "year": "2024-2025",
       "hasImage": false,
-      "image": "/freelance/flextiles-erp.jpg",
+      "image": "/consulting/flextiles-erp.jpg",
       "fullDescription": "Built a full-featured Enterprise Resource Planning (ERP) system from scratch for Flextiles, a premium print manufacturing company. The system manages the entire business workflow from lead generation to order completion, including complex cost calculations, production scheduling, and multi-role user management.",
       highlights: [
         "Advanced billing system with dynamic cost calculations for 15+ production processes (letterpress, foil stamping, embossing, die-cutting)",
@@ -163,7 +162,7 @@ export const portfolioData = {
       "client": "Planning Department",
       "year": "2024-2025",
       "hasImage": false,
-      "image": "/freelance/sikkim-budget-system.jpg",
+      "image": "/consulting/sikkim-budget-system.jpg",
       "fullDescription": "Developed a comprehensive enterprise budget management system for the Sikkim Planning Department that digitized the entire state budget workflow. The system manages multi-billion rupee allocations across 15+ departments, handling everything from project proposals and approvals to fund distribution, installment tracking, and utilization certificate management. Built with advanced features like real-time auto-save, role-based access control, multi-level approval workflows, and complex financial calculations.",
       highlights: [
         "Complete digitization of state budget planning and allocation processes eliminating paper-based workflows",
@@ -244,7 +243,7 @@ export const portfolioData = {
       "client": "Private College",
       "year": "2024-2025",
       "hasImage": false,
-      "image": "/freelance/neissr-lms.jpg",
+      "image": "/consulting/neissr-lms.jpg",
       "fullDescription": "Developed a complete Learning Management System from scratch for NEISSR, an educational institution managing multiple courses and hundreds of students. The system digitalizes the entire academic workflow including student enrollment, course management, faculty assignments, timetable creation, attendance tracking, and result management. Built with a sophisticated role-based access control system supporting administrators, teachers, and students with tailored interfaces and permissions for each role.",
       highlights: [
         "Multi-role authentication system with granular permissions for Admin, Teacher, and Student roles with Firebase Authentication",
@@ -321,7 +320,7 @@ export const portfolioData = {
       "client": "Internal Office Event",
       "year": "2024",
       "hasImage": false,
-      "image": "/freelance/ada-cricket-auction.jpg",
+      "image": "/consulting/ada-cricket-auction.jpg",
       "fullDescription": "Built a complete auction management system from scratch for ADA Digital Analytics' office cricket tournament. The application digitized the entire cricket auction workflow, enabling seamless player registration with detailed statistics, team creation with wallet management, real-time live auction interface, and comprehensive result tracking with CSV export capabilities. The system ensured transaction integrity through Firebase transactions and provided an intuitive interface for non-technical users to conduct smooth auctions.",
       "highlights": [
         "Real-time auction interface with live bidding controls and player queue visualization for seamless auction flow",
@@ -395,10 +394,10 @@ export const portfolioData = {
         "Lucide Icons",
         "JavaScript"
       ],
-      "client": "Freelance Client",
+      "client": "Enterprise Client",
       "year": "2024-2025",
       "hasImage": false,
-      "image": "/freelance/form-builder-system.jpg",
+      "image": "/consulting/form-builder-system.jpg",
       "fullDescription": "Developed a comprehensive enterprise-grade form builder application from scratch that enables users to create, manage, and analyze dynamic forms without any coding knowledge. The system features an intuitive drag-and-drop interface for form creation, real-time Firebase synchronization for submissions, and a powerful analytics dashboard for data insights. Built with performance and scalability in mind, supporting thousands of submissions with advanced filtering, search, and export capabilities.",
       highlights: [
         "Drag-and-drop form builder with 10+ field types (text, email, number, date, file upload, rating, checkboxes, radio buttons, dropdowns, textarea)",
@@ -482,7 +481,7 @@ export const portfolioData = {
       client: "Department of Tourism, Government of Nagaland",
       year: "2024",
       hasImage: false,
-      image: "/freelance/nagaland-tourism.jpg",
+      image: "/consulting/nagaland-tourism.jpg",
       fullDescription: "Developed the official tourism portal for the Government of Nagaland's Department of Tourism, serving as the digital gateway for domestic and international tourists. The platform provides comprehensive information about Nagaland's rich cultural heritage, featuring detailed profiles of 18+ tribes, their unique festivals, tourist destinations, and essential travel services. Built with a focus on user experience, the website features interactive modal systems, smooth animations, and a responsive design that works seamlessly across all devices.",
       highlights: [
         "Comprehensive tribal showcase with 18+ detailed tribe profiles featuring cultural information, traditional attire, and festival details with interactive modal views",
@@ -498,62 +497,12 @@ export const portfolioData = {
         "Multi-page architecture with 25+ routes covering all aspects of Nagaland tourism",
         "Responsive design optimized for desktop, tablet, and mobile devices with adaptive layouts"
       ],
-      keyFeatures: [
-        "Tribes & Festivals Module: Interactive grid showcasing 18+ tribes with detailed modal views containing festival information, cultural significance, timing, and photo galleries",
-        "Destinations Explorer: Comprehensive tourist destinations with categorization, rich descriptions, and high-quality imagery",
-        "Festival Calendar: Complete annual calendar of tribal festivals with dates, durations, locations, and cultural context",
-        "Digital Platform Integration: Seamless integration with mobile apps through QR codes and direct download links for iOS and Android",
-        "Travel Permits Section: Detailed information about Inner Line Permit (ILP) and Protected Area Permit (PAP) with application guidelines",
-        "Accommodation Directory: Comprehensive listings of government-approved hotels, lodges, and homestays with contact information",
-        "Tour Services: Complete database of registered tour operators, travel agents, and certified guides with verification status",
-        "News & Events: Dynamic content management system with image galleries and detailed event coverage",
-        "Downloads Section: Centralized repository for tourism policies, reports, maps, and promotional materials",
-        "About Nagaland: Rich content covering history, culture, districts, and general information with interactive map",
-        "FAQ Section: Comprehensive frequently asked questions with expandable accordion interface",
-        "Contact Information: Multiple contact channels for different tourism-related queries with department structure"
-      ],
-      technicalHighlights: [
-        "25+ functional routes with React Router for seamless navigation across the entire tourism portal",
-        "100+ optimized image assets with custom URL mapping system for efficient loading and caching",
-        "Custom hooks implementation for AOS (Animate On Scroll) integration with refresh functionality",
-        "Reusable component library with PageHeader, Modal, Card, and content rendering components",
-        "JSON-based data management for tribes, festivals, destinations, hotels, and guides for easy content updates",
-        "Advanced modal system with keyboard navigation (Escape key), click-outside-to-close, and body scroll lock",
-        "Responsive grid layouts using CSS Grid and Flexbox for optimal display across all screen sizes",
-        "Custom CSS architecture with design tokens and color variables for consistent theming",
-        "Smooth page transitions and scroll animations with AOS library integration",
-        "Optimized image loading with lazy loading and error handling for broken images",
-        "Comprehensive error boundaries and fallback UI for enhanced reliability",
-        "SEO-friendly structure with proper meta tags, semantic HTML, and accessibility features",
-        "Cross-browser compatibility testing ensuring consistent experience across all major browsers"
-      ],
       impact: [
         "Official digital presence for Nagaland Tourism Department serving as primary information source for tourists",
         "Digital preservation of cultural heritage with detailed documentation of 18+ tribes and their traditions",
         "Streamlined access to tourism services reducing time for permit information and service provider discovery",
         "Enhanced discoverability of Nagaland as a tourist destination through comprehensive online presence",
-        "Improved tourist experience with centralized access to all necessary travel information and resources",
-        "Reduced administrative burden with online availability of permits, policies, and contact information",
-        "Promoted cultural awareness with rich multimedia content showcasing tribal festivals and traditions",
-        "Facilitated tourism industry growth by providing platform for registered operators and guides",
-        "Enabled better tourism planning with festival calendar and destination information",
-        "Increased accessibility to Nagaland tourism information for domestic and international audiences"
-      ],
-      challenges: [
-        "Managing and optimizing 100+ image assets while maintaining fast page load times across all pages",
-        "Creating intuitive navigation for extensive content across 25+ pages without overwhelming users",
-        "Implementing efficient image mapping system to handle large-scale asset imports in React/Vite",
-        "Designing responsive layouts that work seamlessly across diverse content types (text, images, tables, galleries)",
-        "Organizing complex tribal and festival data structures in JSON for scalability and easy content management",
-        "Building custom modal system that handles different content types (text, images, tables) with smooth interactions"
-      ],
-      solutions: [
-        "Implemented custom image URL mapping system using JavaScript imports for efficient asset management",
-        "Created modular JSON data structure allowing easy content updates without code changes",
-        "Developed reusable modal component system with flexible content rendering for different data types",
-        "Built comprehensive component library ensuring visual and functional consistency across all pages",
-        "Optimized images with lazy loading and proper sizing reducing initial bundle size by 60%",
-        "Implemented smooth scroll and AOS animations improving user engagement and visual appeal"
+        "Improved tourist experience with centralized access to all necessary travel information and resources"
       ]
     },
     {
@@ -565,13 +514,13 @@ export const portfolioData = {
       client: "Personal/Professional Portfolio",
       year: "2024",
       hasImage: false,
-      image: "/freelance/portfolio-website-react.jpg",
+      image: "/consulting/portfolio-website-react.jpg",
       fullDescription: "Developed a professional portfolio website from scratch using React and modern web technologies. The site features a fully responsive design, dynamic dark/light theme switching, smooth scroll animations, and an intuitive navigation system. Built with performance and user experience in mind, implementing lazy loading, intersection observers, and optimized rendering.",
       highlights: [
         "Implemented custom React hooks for scroll spy navigation and intersection observer animations",
         "Built responsive navigation with smooth scrolling and active section highlighting",
         "Created reusable component library with Card, Button, and SectionTitle components",
-        "Integrated dynamic routing for project and freelance detail pages",
+        "Integrated dynamic routing for project and consulting detail pages",
         "Designed custom CSS theme system with dark/light mode support using CSS variables",
         "Optimized performance with lazy loading and efficient state management",
         "Implemented accessibility features with proper ARIA labels and keyboard navigation",

@@ -7,33 +7,33 @@ import Card from '../common/Card';
 import Button from '../common/Button';
 import { scrollToElement } from '../../utils/helpers';
 
-const Freelance = () => {
-  const { freelance } = portfolioData;
+const Consulting = () => {
+  const { consulting } = portfolioData;
   const navigate = useNavigate();
 
   const handleContactClick = () => {
     scrollToElement('contact');
   };
 
-  const handleFreelanceClick = (project) => {
-    navigate(`/freelance/${project.slug}`);
+  const handleConsultingClick = (project) => {
+    navigate(`/consulting/${project.slug}`);
   };
 
   return (
-    <section id="freelance" className="section py-24 bg-bg-primary relative">
+    <section id="consulting" className="section py-24 bg-bg-primary relative">
       <div className="container mx-auto px-4">
-        <SectionTitle subtitle="Client projects and freelance work">
-          Freelance Work
+        <SectionTitle subtitle="Client projects and consulting engagements">
+          Consulting Work
         </SectionTitle>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {freelance.map((project, index) => (
+          {consulting.map((project, index) => (
             <Card 
               key={project.id} 
               hover={false} 
               animate={true} 
               className="group cursor-pointer overflow-hidden"
-              onClick={() => handleFreelanceClick(project)}
+              onClick={() => handleConsultingClick(project)}
             >
               {/* Project Image - Only show if hasImage is true */}
               {project.hasImage && project.image && (
@@ -103,7 +103,7 @@ const Freelance = () => {
                     <span>{project.year}</span>
                   </div>
                   <button
-                    onClick={() => handleFreelanceClick(project)}
+                    onClick={() => handleConsultingClick(project)}
                     className="flex items-center gap-2 text-accent font-medium group-hover:gap-3 transition-all"
                   >
                     <span className="text-xs">View Details</span>
@@ -128,7 +128,7 @@ const Freelance = () => {
                 Interested in working together?
               </h3>
               <p className="text-text-secondary mb-6 max-w-xl mx-auto">
-                I'm available for freelance projects and consulting work. Let's discuss how I can help bring your ideas to life.
+                I'm available for consulting projects and professional engagements. Let's discuss how I can help bring your ideas to life.
               </p>
               <Button
                 variant="primary"
@@ -147,4 +147,4 @@ const Freelance = () => {
   );
 };
 
-export default Freelance;
+export default Consulting;

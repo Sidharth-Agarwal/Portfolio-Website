@@ -5,11 +5,11 @@ import { portfolioData } from '../data/portfolioData';
 import Button from '../components/common/Button';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 
-const FreelanceDetail = () => {
-  const { freelanceId } = useParams();
+const ConsultingDetail = () => {
+  const { consultingId } = useParams();
   const navigate = useNavigate();
 
-  const project = portfolioData.freelance.find(p => p.slug === freelanceId);
+  const project = portfolioData.consulting.find(p => p.slug === consultingId);
 
   useEffect(() => {
     if (!project) {
@@ -33,11 +33,11 @@ const FreelanceDetail = () => {
       <div className="container mx-auto px-4">
         {/* Back Button */}
         <Link
-          to="/#freelance"
+          to="/#consulting"
           className="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition-colors mb-8"
         >
           <ArrowLeft className="w-5 h-5" />
-          <span>Back to Freelance Work</span>
+          <span>Back to Consulting Work</span>
         </Link>
 
         {/* Project Header */}
@@ -163,4 +163,4 @@ const FreelanceDetail = () => {
   );
 };
 
-export default FreelanceDetail;
+export default ConsultingDetail;

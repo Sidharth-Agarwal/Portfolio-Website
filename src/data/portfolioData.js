@@ -303,6 +303,47 @@ export const portfolioData = {
       ]
     },
     {
+      id: 6,
+      slug: "nagaland-tourism-website",
+      title: "Nagaland Tourism Official Portal",
+      description: "Comprehensive tourism website for the Government of Nagaland showcasing 18+ tribes, festivals, destinations, and complete travel information. Features interactive UI, detailed tribal profiles, festival calendars, and essential tourist resources with responsive design.",
+      tech: [
+        "React",
+        "JavaScript",
+        "CSS3",
+        "React Router",
+        "AOS Library",
+        "JSON Data Management",
+        "Responsive Design"
+      ],
+      client: "Department of Tourism, Government of Nagaland",
+      year: "2024",
+      hasImage: false,
+      image: "/consulting/nagaland-tourism.jpg",
+      fullDescription: "Developed the official tourism portal for the Government of Nagaland's Department of Tourism, serving as the digital gateway for domestic and international tourists. The platform provides comprehensive information about Nagaland's rich cultural heritage, featuring detailed profiles of 18+ tribes, their unique festivals, tourist destinations, and essential travel services. Built with a focus on user experience, the website features interactive modal systems, smooth animations, and a responsive design that works seamlessly across all devices.",
+      highlights: [
+        "Comprehensive tribal showcase with 18+ detailed tribe profiles featuring cultural information, traditional attire, and festival details with interactive modal views",
+        "Advanced festival calendar system displaying tribal festivals with timing, duration, significance, and district-wise categorization",
+        "Tourist destinations explorer with rich media content, categorized listings, and detailed destination information",
+        "Integrated digital platform section with QR codes and download links for official tourism mobile apps (iOS and Android)",
+        "Complete travel resources including ILP/PAP permit information, accommodation listings (hotels and homestays), registered guides, and tour operators",
+        "Interactive image galleries with 100+ optimized assets using efficient URL mapping system for fast loading",
+        "News and events section with multi-image galleries and detailed content management",
+        "Downloadable resources including tourism policy documents, administrative reports, and tourist maps with direct PDF access",
+        "Custom modal system for detailed content exploration without page navigation maintaining user context",
+        "Smooth scroll animations using AOS library with carefully timed delays for enhanced visual appeal",
+        "Multi-page architecture with 25+ routes covering all aspects of Nagaland tourism",
+        "Responsive design optimized for desktop, tablet, and mobile devices with adaptive layouts"
+      ],
+      impact: [
+        "Official digital presence for Nagaland Tourism Department serving as primary information source for tourists",
+        "Digital preservation of cultural heritage with detailed documentation of 18+ tribes and their traditions",
+        "Streamlined access to tourism services reducing time for permit information and service provider discovery",
+        "Enhanced discoverability of Nagaland as a tourist destination through comprehensive online presence",
+        "Improved tourist experience with centralized access to all necessary travel information and resources"
+      ]
+    },
+    {
       "id": 4,
       "slug": "ada-premiere-league-auction",
       "title": "Cricket Auction Management System",
@@ -462,47 +503,6 @@ export const portfolioData = {
         "Building a flexible validation system supporting 10+ field types with customizable rules",
         "Optimizing Firebase queries for large datasets while maintaining real-time updates",
         "Creating a Google Forms-style dynamic table that adapts to different field types and counts"
-      ]
-    },
-    {
-      id: 6,
-      slug: "nagaland-tourism-website",
-      title: "Nagaland Tourism Official Portal",
-      description: "Comprehensive tourism website for the Government of Nagaland showcasing 18+ tribes, festivals, destinations, and complete travel information. Features interactive UI, detailed tribal profiles, festival calendars, and essential tourist resources with responsive design.",
-      tech: [
-        "React",
-        "JavaScript",
-        "CSS3",
-        "React Router",
-        "AOS Library",
-        "JSON Data Management",
-        "Responsive Design"
-      ],
-      client: "Department of Tourism, Government of Nagaland",
-      year: "2024",
-      hasImage: false,
-      image: "/consulting/nagaland-tourism.jpg",
-      fullDescription: "Developed the official tourism portal for the Government of Nagaland's Department of Tourism, serving as the digital gateway for domestic and international tourists. The platform provides comprehensive information about Nagaland's rich cultural heritage, featuring detailed profiles of 18+ tribes, their unique festivals, tourist destinations, and essential travel services. Built with a focus on user experience, the website features interactive modal systems, smooth animations, and a responsive design that works seamlessly across all devices.",
-      highlights: [
-        "Comprehensive tribal showcase with 18+ detailed tribe profiles featuring cultural information, traditional attire, and festival details with interactive modal views",
-        "Advanced festival calendar system displaying tribal festivals with timing, duration, significance, and district-wise categorization",
-        "Tourist destinations explorer with rich media content, categorized listings, and detailed destination information",
-        "Integrated digital platform section with QR codes and download links for official tourism mobile apps (iOS and Android)",
-        "Complete travel resources including ILP/PAP permit information, accommodation listings (hotels and homestays), registered guides, and tour operators",
-        "Interactive image galleries with 100+ optimized assets using efficient URL mapping system for fast loading",
-        "News and events section with multi-image galleries and detailed content management",
-        "Downloadable resources including tourism policy documents, administrative reports, and tourist maps with direct PDF access",
-        "Custom modal system for detailed content exploration without page navigation maintaining user context",
-        "Smooth scroll animations using AOS library with carefully timed delays for enhanced visual appeal",
-        "Multi-page architecture with 25+ routes covering all aspects of Nagaland tourism",
-        "Responsive design optimized for desktop, tablet, and mobile devices with adaptive layouts"
-      ],
-      impact: [
-        "Official digital presence for Nagaland Tourism Department serving as primary information source for tourists",
-        "Digital preservation of cultural heritage with detailed documentation of 18+ tribes and their traditions",
-        "Streamlined access to tourism services reducing time for permit information and service provider discovery",
-        "Enhanced discoverability of Nagaland as a tourist destination through comprehensive online presence",
-        "Improved tourist experience with centralized access to all necessary travel information and resources"
       ]
     },
     {

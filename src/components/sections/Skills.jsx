@@ -1,175 +1,98 @@
 import React, { useState } from 'react';
-import { Code2, Layout, Server, Database, Cloud, Wrench } from 'lucide-react';
 import { portfolioData } from '../../data/portfolioData';
 import SectionTitle from '../common/SectionTitle';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+
+const Badge = ({ skill, dim = false }) => (
+  <div className={`flex-shrink-0 px-4 py-2 rounded-xl border backdrop-blur-sm transition-all duration-300 select-none ${
+    dim
+      ? 'border-border/40 bg-bg-secondary/40 text-text-quaternary'
+      : 'border-border/70 bg-card-bg/60 text-text-secondary hover:border-accent/50 hover:text-accent hover:bg-accent/5'
+  }`}>
+    <span className="text-xs font-medium whitespace-nowrap">{skill}</span>
+  </div>
+);
+
+const MarqueeRow = ({ items, reverse = false, duration = '40s' }) => {
+  const [paused, setPaused] = useState(false);
+  const doubled = [...items, ...items];
+
+  return (
+    <div
+      className="relative overflow-hidden py-1.5"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div aria-hidden="true" className="absolute left-0 top-0 bottom-0 w-36 z-10 pointer-events-none" style={{ background: 'linear-gradient(to right, rgb(var(--bg-primary)), transparent)' }} />
+      <div aria-hidden="true" className="absolute right-0 top-0 bottom-0 w-36 z-10 pointer-events-none" style={{ background: 'linear-gradient(to left, rgb(var(--bg-primary)), transparent)' }} />
+      <div
+        className="flex gap-2.5 w-max"
+        style={{
+          animation: `${reverse ? 'marqueeRight' : 'marqueeLeft'} ${duration} linear infinite`,
+          animationPlayState: paused ? 'paused' : 'running',
+        }}
+      >
+        {doubled.map((skill, i) => (
+          <Badge key={`${skill}-${i}`} skill={skill} dim={i % 9 === 4} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Skills = () => {
   const { skills } = portfolioData;
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [ref, isVisible] = useIntersectionObserver();
 
-  const categories = [
-    { id: 'all', label: 'All Skills', icon: Code2 },
-    { id: 'languages', label: 'Languages', icon: Code2 },
-    { id: 'frontend', label: 'Frontend', icon: Layout },
-    { id: 'backend', label: 'Backend', icon: Server },
-    { id: 'databases', label: 'Databases', icon: Database },
-    { id: 'cloud', label: 'Cloud', icon: Cloud },
-    { id: 'tools', label: 'Tools', icon: Wrench },
+  const row1 = [...skills.languages, ...skills.frontend, ...skills.languages, ...skills.frontend];
+  const row2 = [...skills.backend, ...skills.databases, ...skills.backend, ...skills.databases];
+  const row3 = [...skills.cloud, ...skills.tools, ...skills.cloud, ...skills.tools, ...skills.cloud, ...skills.tools];
+
+  const total = Object.values(skills).flat().length;
+  const statsData = [
+    { value: skills.languages.length + skills.frontend.length, label: 'Frontend' },
+    { value: skills.backend.length + skills.databases.length,  label: 'Backend & DB' },
+    { value: skills.cloud.length + skills.tools.length,        label: 'DevOps & Tools' },
+    { value: total, label: 'Total' },
   ];
 
-  const getSkillsByCategory = () => {
-    if (activeCategory === 'all') {
-      return [
-        { title: 'Languages', items: skills.languages, icon: Code2, color: 'from-blue-500 to-cyan-500' },
-        { title: 'Frontend', items: skills.frontend, icon: Layout, color: 'from-purple-500 to-pink-500' },
-        { title: 'Backend', items: skills.backend, icon: Server, color: 'from-green-500 to-emerald-500' },
-        { title: 'Databases', items: skills.databases, icon: Database, color: 'from-orange-500 to-red-500' },
-        { title: 'Cloud', items: skills.cloud, icon: Cloud, color: 'from-indigo-500 to-blue-500' },
-        { title: 'Tools', items: skills.tools, icon: Wrench, color: 'from-yellow-500 to-orange-500' },
-      ];
-    }
-    
-    const categoryData = categories.find(cat => cat.id === activeCategory);
-    const colorMap = {
-      languages: 'from-blue-500 to-cyan-500',
-      frontend: 'from-purple-500 to-pink-500',
-      backend: 'from-green-500 to-emerald-500',
-      databases: 'from-orange-500 to-red-500',
-      cloud: 'from-indigo-500 to-blue-500',
-      tools: 'from-yellow-500 to-orange-500',
-    };
-    
-    return [{
-      title: categoryData.label,
-      items: skills[activeCategory],
-      icon: categoryData.icon,
-      color: colorMap[activeCategory]
-    }];
-  };
-
-  const skillCategories = getSkillsByCategory();
-
   return (
-    <section id="skills" className="section py-24 bg-bg-primary relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 pattern-dots opacity-20"></div>
-      
+    <section id="skills" className="section py-24 bg-bg-primary relative overflow-hidden">
+      <div aria-hidden="true" className="absolute inset-0 pattern-dots opacity-[0.012]" />
+      <div aria-hidden="true" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-accent/[0.04] rounded-full blur-[110px] pointer-events-none" />
+
       <div className="container mx-auto px-4 relative z-10">
-        <SectionTitle subtitle="Technologies and tools I work with">
+        <SectionTitle number="04" subtitle="Technologies and tools I work with">
           Skills & Technologies
         </SectionTitle>
-
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16">
-          {categories.map((category) => {
-            const Icon = category.icon;
-            return (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ${
-                  activeCategory === category.id
-                    ? 'bg-accent text-white shadow-lg shadow-accent/30 scale-105'
-                    : 'bg-card-bg border border-border text-text-secondary hover:bg-bg-tertiary hover:text-text-primary hover:border-accent hover:-translate-y-1'
-                }`}
-              >
-                <Icon className="w-4 h-4" />
-                <span className="text-sm">{category.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Skills Grid */}
-        <div
-          ref={ref}
-          className={`max-w-6xl mx-auto space-y-12 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          {skillCategories.map((category, idx) => {
-            const Icon = category.icon;
-            return (
-              <div
-                key={category.title}
-                className="animate-fade-in"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                {/* Category Header */}
-                <div className="flex items-center gap-4 mb-8">
-                  <div className={`p-3 bg-gradient-to-br ${category.color} rounded-2xl shadow-lg`}>
-                    <Icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-text-primary">
-                      {category.title}
-                    </h3>
-                    <p className="text-text-tertiary text-sm">{category.items.length} technologies</p>
-                  </div>
-                </div>
-                
-                {/* Skills Grid - Responsive */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                  {category.items.map((skill, skillIdx) => (
-                    <div
-                      key={skillIdx}
-                      className="group bg-card-bg border border-border rounded-xl px-4 py-3 text-center hover:border-accent hover:bg-accent/5 hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-default"
-                    >
-                      <span className="text-text-primary font-medium text-sm group-hover:text-accent transition-colors">
-                        {skill}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Skills Summary */}
-        <div className="mt-20 max-w-4xl mx-auto">
-          <div className="relative overflow-hidden bg-gradient-to-br from-accent/10 via-accent-light/10 to-accent/5 border border-accent/20 rounded-3xl p-10">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-accent/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-0 left-0 w-40 h-40 bg-accent-light/10 rounded-full blur-3xl"></div>
-            
-            <div className="relative z-10 text-center">
-              <h3 className="text-2xl font-bold text-text-primary mb-4">
-                Full-Stack Expertise
-              </h3>
-              <p className="text-text-secondary text-lg leading-relaxed max-w-2xl mx-auto">
-                With expertise across the full stack, I combine modern frontend frameworks,
-                robust backend technologies, and cloud infrastructure to build scalable,
-                secure, and performant applications. Always learning and adapting to new technologies.
-              </p>
-              
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-8 mt-8 max-w-2xl mx-auto">
-                <div>
-                  <div className="text-3xl font-bold gradient-text mb-1">
-                    {skills.languages.length + skills.frontend.length}
-                  </div>
-                  <div className="text-text-tertiary text-sm">Frontend Skills</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold gradient-text mb-1">
-                    {skills.backend.length + skills.databases.length}
-                  </div>
-                  <div className="text-text-tertiary text-sm">Backend Skills</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold gradient-text mb-1">
-                    {skills.cloud.length + skills.tools.length}
-                  </div>
-                  <div className="text-text-tertiary text-sm">DevOps & Tools</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+
+      {/* Full-width marquee rows */}
+      <div className="relative z-10 space-y-3 mb-16">
+        <MarqueeRow items={row1} reverse={false} duration="50s" />
+        <MarqueeRow items={row2} reverse={true}  duration="60s" />
+        <MarqueeRow items={row3} reverse={false} duration="45s" />
+      </div>
+
+      {/* Stats */}
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl mx-auto">
+          {statsData.map((s) => (
+            <div key={s.label} className="text-center p-5 rounded-2xl glass-card hover:border-accent/40 hover:-translate-y-1 transition-all duration-300">
+              <div className="text-3xl font-black gradient-text mb-1">{s.value}</div>
+              <div className="text-[11px] text-text-quaternary font-medium uppercase tracking-wider">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-10 text-center text-text-quaternary text-xs max-w-sm mx-auto leading-relaxed">
+          Always learning — combining modern frontend frameworks, robust backend technologies,
+          and cloud infrastructure to ship scalable, secure applications.
+        </p>
+      </div>
+
+      <style>{`
+        @keyframes marqueeLeft  { from { transform: translateX(0);    } to { transform: translateX(-50%); } }
+        @keyframes marqueeRight { from { transform: translateX(-50%); } to { transform: translateX(0);    } }
+      `}</style>
     </section>
   );
 };

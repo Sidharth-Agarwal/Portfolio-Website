@@ -4,77 +4,96 @@ import { portfolioData } from '../../data/portfolioData';
 
 const Footer = () => {
   const { personal } = portfolioData;
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
-  const socialLinks = [
-    { icon: Github, href: personal.github, label: 'GitHub' },
-    { icon: Linkedin, href: personal.linkedin, label: 'LinkedIn' },
-    { icon: Code2, href: personal.leetcode, label: 'LeetCode' },
-    { icon: Mail, href: `mailto:${personal.email}`, label: 'Email' },
+  const socials = [
+    { icon: Github,   href: personal.github,            label: 'GitHub'   },
+    { icon: Linkedin, href: personal.linkedin,          label: 'LinkedIn' },
+    { icon: Code2,    href: personal.leetcode,          label: 'LeetCode' },
+    { icon: Mail,     href: `mailto:${personal.email}`, label: 'Email'    },
   ];
 
   return (
-    <footer className="bg-bg-secondary border-t border-border py-12 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 pattern-dots opacity-20"></div>
-      
+    <footer className="relative bg-bg-secondary border-t border-border/40 pt-14 pb-8 overflow-hidden">
+      {/* Subtle pattern */}
+      <div aria-hidden="true" className="absolute inset-0 pattern-dots opacity-[0.012]" />
+
+      {/* Bottom centre glow */}
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2
+                   w-[500px] h-40 bg-accent/[0.05] rounded-full blur-[80px] pointer-events-none"
+      />
+
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col items-center space-y-8">
-          {/* Logo/Name */}
-          <div className="text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent mb-2">
+
+        {/* ── Top row: name + socials ── */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-10">
+
+          {/* Large editorial name */}
+          <div>
+            <div
+              className="font-black gradient-text leading-none select-none"
+              style={{ fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)' }}
+            >
               {personal.name}
             </div>
-            <p className="text-text-tertiary text-sm">
-              {personal.title}
-            </p>
+            <p className="text-text-tertiary text-sm mt-2">{personal.title}</p>
           </div>
 
-          {/* Social Links */}
-          {/* <div className="flex items-center gap-4">
-            {socialLinks.map((social) => (
+          {/* Social icon buttons */}
+          <div className="flex items-center gap-2">
+            {socials.map(({ icon: Icon, href, label }) => (
               <a
-                key={social.label}
-                href={social.href}
+                key={label}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-3 rounded-xl bg-bg-tertiary border border-border hover:border-accent hover:bg-accent/10 transition-all hover:-translate-y-1 hover:shadow-lg"
-                aria-label={social.label}
-                title={social.label}
+                aria-label={label}
+                title={label}
+                className="group p-2.5 rounded-xl border border-border/60 bg-card-bg/40
+                           backdrop-blur-sm hover:border-accent/40 hover:bg-accent/10
+                           hover:-translate-y-1 transition-all duration-300"
               >
-                <social.icon className="w-5 h-5 text-text-secondary group-hover:text-accent transition-colors" />
+                <Icon
+                  className="w-4 h-4 text-text-tertiary group-hover:text-accent
+                             transition-colors duration-300"
+                />
               </a>
             ))}
-          </div> */}
-
-          {/* Divider */}
-          <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
-
-          {/* Copyright & Info */}
-          <div className="text-center space-y-3">
-            <p className="text-text-tertiary text-sm">
-              © {currentYear} {personal.name}. All rights reserved.
-            </p>
-            <p className="flex items-center justify-center gap-2 text-text-quaternary text-xs">
-              <span>Built with</span>
-              <Heart className="w-3 h-3 text-red-500 fill-current animate-pulse" />
-              <span>using React & Tailwind CSS</span>
-            </p>
-            <p className="text-text-quaternary text-xs">
-              Designed & Developed by {personal.name}
-            </p>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="flex items-center gap-6 text-xs text-text-quaternary">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Available for work</span>
-            </div>
-            <span>•</span>
-            <span>{personal.location}</span>
           </div>
         </div>
+
+        {/* Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-border/50 to-transparent mb-8" />
+
+        {/* ── Bottom row ── */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-text-quaternary">
+          <span>© {year} {personal.name}. All rights reserved.</span>
+
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {/* Availability indicator */}
+            <div className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span>Available for work</span>
+            </div>
+
+            <span className="text-border/60">·</span>
+
+            {/* Location */}
+            <span>{personal.location}</span>
+
+            <span className="text-border/60">·</span>
+
+            {/* Built with */}
+            <div className="flex items-center gap-1">
+              <span>Built with</span>
+              <Heart className="w-2.5 h-2.5 text-red-400 fill-current mx-0.5 animate-pulse" />
+              <span>React &amp; Tailwind</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </footer>
   );

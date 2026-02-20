@@ -1,175 +1,206 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { useTheme } from '../../contexts/ThemeContext';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import { useScrollProgress } from '../../hooks/useScrollProgress';
 import ThemeToggle from '../common/ThemeToggle';
 
-const Navbar = () => {
-  const { theme } = useTheme();
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const navLinks = [
+  { label: 'About',      section: 'about'      },
+  { label: 'Experience', section: 'experience' },
+  { label: 'Consulting', section: 'consulting' },
+  { label: 'Skills',     section: 'skills'     },
+  { label: 'Contact',    section: 'contact'    },
+];
 
-  const sectionIds = ['about', 'experience', 'projects', 'consulting', 'skills', 'contact'];
+const sectionIds = ['about', 'experience', 'projects', 'consulting', 'skills', 'contact'];
+
+const Navbar = () => {
+  const location  = useLocation();
+  const navigate  = useNavigate();
+  const [scrolled, setScrolled]       = useState(false);
+  const [mobileOpen, setMobileOpen]   = useState(false);
+  const [indicator, setIndicator]     = useState({ left: 0, width: 0, opacity: 0 });
+
   const activeSection = useScrollSpy(sectionIds);
   const scrollProgress = useScrollProgress();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+  const navBarRef   = useRef(null);   // the flex container that holds buttons
+  const itemRefs    = useRef({});     // section → button element
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  /* ── Scroll detection ─────────────────────────────────────────── */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
+  /* ── Close mobile on route change ────────────────────────────── */
+  useEffect(() => { setMobileOpen(false); }, [location]);
 
-  const scrollToSection = (sectionId) => {
+  /* ── Sliding indicator position ──────────────────────────────── */
+  useEffect(() => {
+    const el  = itemRefs.current[activeSection];
+    const bar = navBarRef.current;
+    if (!el || !bar) { setIndicator(p => ({ ...p, opacity: 0 })); return; }
+
+    // Use requestAnimationFrame so layout is settled
+    const frame = requestAnimationFrame(() => {
+      const barRect = bar.getBoundingClientRect();
+      const elRect  = el.getBoundingClientRect();
+      setIndicator({
+        left:    elRect.left - barRect.left,
+        width:   elRect.width,
+        opacity: 1,
+      });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [activeSection]);
+
+  /* ── Smooth scroll helper ─────────────────────────────────────── */
+  const goToSection = (id) => {
+    setMobileOpen(false);
     if (location.pathname !== '/') {
       navigate('/');
-      setTimeout(() => {
-        scrollToElement(sectionId);
-      }, 100);
+      setTimeout(() => smoothScroll(id), 120);
     } else {
-      scrollToElement(sectionId);
-    }
-    setIsMobileMenuOpen(false);
-  };
-
-  const scrollToElement = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.offsetTop - offset;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
+      smoothScroll(id);
     }
   };
 
-  const navLinks = [
-    { label: 'About', section: 'about' },
-    { label: 'Experience', section: 'experience' },
-    // { label: 'Projects', section: 'projects' },
-    { label: 'Consulting', section: 'consulting' },
-    { label: 'Skills', section: 'skills' },
-    { label: 'Contact', section: 'contact' },
-  ];
+  const smoothScroll = (id) => {
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+  };
 
+  /* ── Render ───────────────────────────────────────────────────── */
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? 'bg-bg-primary/95 backdrop-blur-xl shadow-lg'
-          : 'bg-bg-primary/50 backdrop-blur-sm'
-      }`}
-    >
-      {/* Scroll Progress Bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-border/30">
+    <>
+      {/* ── Desktop floating pill ─────────────────────────────────── */}
+      <header className="fixed top-5 inset-x-0 z-50 hidden md:flex justify-center pointer-events-none">
         <div
-          className="h-full bg-gradient-to-r from-accent to-accent-light transition-all duration-150 ease-out will-change-transform"
-          style={{ 
-            width: `${scrollProgress}%`,
-            transform: 'translateZ(0)' // Force GPU acceleration
-          }}
+          className={`
+            pointer-events-auto flex items-center gap-1 px-3 py-2 rounded-full
+            transition-all duration-500
+            ${scrolled
+              ? 'border border-border/70 bg-bg-primary/85 backdrop-blur-2xl shadow-xl shadow-black/15'
+              : 'border border-transparent bg-transparent'}
+          `}
         >
-          {/* Glow effect on the progress bar */}
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-20 h-1 bg-gradient-to-l from-accent-light to-transparent blur-sm"></div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link
             to="/"
-            className="group relative"
+            className="mr-2 px-3 py-1.5 rounded-full text-base font-bold gradient-text
+                       hover:bg-accent/8 transition-colors duration-200"
           >
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="text-2xl font-bold bg-gradient-to-r from-accent to-accent-light bg-clip-text text-transparent">
-                  SA
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-r from-accent to-accent-light opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300"></div>
-              </div>
-              <div className="h-8 w-px bg-border"></div>
-              <span className="text-sm font-medium text-text-tertiary group-hover:text-accent transition-colors">
-                Portfolio
-              </span>
-            </div>
+            SA
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+          <div className="w-px h-4 bg-border/70 mx-0.5" />
+
+          {/* Nav items + sliding pill indicator */}
+          <div ref={navBarRef} className="relative flex items-center">
+            {/* Sliding highlight */}
+            <div
+              aria-hidden="true"
+              className="absolute top-0 h-full rounded-full
+                         bg-accent/10 border border-accent/25
+                         transition-all duration-300 ease-out pointer-events-none"
+              style={indicator}
+            />
+
+            {navLinks.map(({ label, section }) => (
               <button
-                key={link.section}
-                onClick={() => scrollToSection(link.section)}
-                className={`relative text-sm font-medium transition-colors cursor-pointer group ${
-                  activeSection === link.section
+                key={section}
+                ref={(el) => (itemRefs.current[section] = el)}
+                onClick={() => goToSection(section)}
+                className={`
+                  relative z-10 px-4 py-1.5 rounded-full text-sm font-medium
+                  transition-colors duration-200
+                  ${activeSection === section
                     ? 'text-accent'
-                    : 'text-text-secondary hover:text-accent'
-                }`}
+                    : 'text-text-secondary hover:text-text-primary'}
+                `}
               >
-                {link.label}
-                <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-accent transition-all duration-300 ${
-                    activeSection === link.section ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`}
-                ></span>
+                {label}
               </button>
             ))}
-            
-            {/* Theme Toggle */}
-            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
+          <div className="w-px h-4 bg-border/70 mx-0.5" />
+
+          {/* Theme toggle */}
+          <div className="ml-1">
             <ThemeToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-text-primary hover:text-accent transition-colors rounded-lg hover:bg-bg-secondary"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-6 border-t border-border animate-fade-in">
-            <div className="flex flex-col space-y-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.section}
-                  onClick={() => scrollToSection(link.section)}
-                  className={`text-left px-4 py-3 text-sm font-medium transition-all rounded-xl ${
-                    activeSection === link.section
-                      ? 'text-accent bg-accent/10 border border-accent/20'
-                      : 'text-text-secondary hover:text-accent hover:bg-bg-secondary'
-                  }`}
-                >
-                  {link.label}
-                </button>
-              ))}
+        {/* Thin progress bar anchored under the pill */}
+        <div
+          className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 h-[2px] rounded-full overflow-hidden
+                     transition-all duration-500"
+          style={{ width: scrolled ? '140px' : '0px', opacity: scrolled ? 1 : 0 }}
+        >
+          <div className="absolute inset-0 bg-border/30" />
+          <div
+            className="h-full bg-gradient-to-r from-accent to-accent-light rounded-full transition-all duration-150"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+      </header>
+
+      {/* ── Mobile nav ──────────────────────────────────────────────── */}
+      <header className="fixed inset-x-0 top-0 z-50 md:hidden">
+        <div
+          className={`transition-all duration-300 ${
+            scrolled || mobileOpen
+              ? 'bg-bg-primary/95 backdrop-blur-xl border-b border-border/50'
+              : 'bg-transparent'
+          }`}
+        >
+          <div className="container mx-auto px-4 flex items-center justify-between h-16">
+            <Link to="/" className="text-base font-bold gradient-text">SA</Link>
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <button
+                onClick={() => setMobileOpen((p) => !p)}
+                className="p-2 rounded-xl text-text-secondary hover:text-accent
+                           hover:bg-bg-secondary transition-all duration-200"
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
             </div>
           </div>
-        )}
-      </div>
-    </nav>
+        </div>
+
+        {/* Mobile dropdown */}
+        <div
+          className={`
+            overflow-hidden transition-all duration-300 ease-out
+            bg-bg-primary/95 backdrop-blur-xl border-b border-border/50
+            ${mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}
+          `}
+        >
+          <div className="container mx-auto px-4 py-3 flex flex-col gap-1">
+            {navLinks.map(({ label, section }) => (
+              <button
+                key={section}
+                onClick={() => goToSection(section)}
+                className={`
+                  text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
+                  ${activeSection === section
+                    ? 'text-accent bg-accent/10 border border-accent/20'
+                    : 'text-text-secondary hover:text-accent hover:bg-bg-secondary'}
+                `}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
+    </>
   );
 };
 

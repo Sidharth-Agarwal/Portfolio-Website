@@ -8,6 +8,7 @@ export const portfolioData = {
     linkedin: "https://linkedin.com/in/sidharthagarwal03",
     github: "https://github.com/sidharth-agarwal",
     leetcode: "https://leetcode.com/sidharth_2003",
+    resume: "/Sidharth_Agarwal_Resume.pdf",
     tagline: "Full-Stack Developer specializing in scalable web applications",
     bio: "Passionate Software Engineer with expertise in building high-performance web applications. I specialize in backend development with Node.js and Python, and love creating elegant user experiences with React. Currently working on multiple projects at ADA Digital Analytics, where I architect secure, scalable solutions that make a real impact. Additionally, I work on consulting projects to keep those mind muscles engaged on different set of technologies."
   },
@@ -55,13 +56,80 @@ export const portfolioData = {
   projects: [
     {
       id: 1,
+      slug: "athmech",
+      title: "AthMech — Cricket Analytics App",
+      description: "React Native mobile application for cricket performance analytics featuring video processing, shot classification, and player performance tracking. Built for coaches and players to analyse batting and bowling technique through AI-assisted video breakdown.",
+      tech: ["React Native", "Firebase", "Firestore", "Firebase Storage", "Video Processing", "JavaScript"],
+      github: null,
+      live: null,
+      featured: true,
+      hasImage: false,
+      image: "/projects/athmech.jpg",
+      fullDescription: "AthMech is a cricket analytics mobile application built with React Native, designed to bridge the gap between professional performance analysis and grassroots cricket. The app allows coaches to record, upload, and annotate match footage, while players can track their performance metrics over time. Video processing pipelines break down innings shot-by-shot, providing granular batting and bowling statistics not available in standard scorecards.",
+      highlights: [
+        "Video upload and processing pipeline with Firebase Storage for match footage management",
+        "Shot-by-shot batting analysis with classification (drives, pulls, cuts, sweeps) and outcome tagging",
+        "Player performance dashboard with session-wise and career aggregate statistics",
+        "Coach portal for annotating video clips and sharing feedback directly with players",
+        "Real-time Firestore sync enabling live session tracking during matches",
+        "Cross-platform React Native build targeting both iOS and Android",
+        "Offline-first architecture with background sync for poor connectivity environments"
+      ]
+    },
+    {
+      id: 2,
+      slug: "mbs-portal",
+      title: "MBS Portal — Automotive Supply Chain",
+      description: "Material Balance System portal for automotive clients Toyota Malaysia and Perodua, built with React 18, Vite, and Azure integration. Features Excel file parsing with merged cell support, Power Automate workflows, and real-time supply chain tracking.",
+      tech: ["React 18", "Vite", "Azure", "Power Automate", "TypeScript", "REST APIs", "SheetJS"],
+      github: null,
+      live: null,
+      featured: true,
+      hasImage: false,
+      image: "/projects/mbs-portal.jpg",
+      fullDescription: "The Material Balance System (MBS) Portal is an enterprise-grade supply chain management platform serving Toyota Malaysia and Perodua. The system digitises the material planning workflow, enabling procurement teams to upload complex Excel manifests (with merged cells and multi-level headers), reconcile supplier deliveries against purchase orders, and trigger automated approval workflows via Power Automate. Built on React 18 with Azure backend services for RBAC, blob storage, and API management.",
+      highlights: [
+        "Advanced Excel parsing engine using SheetJS handling merged cells, multi-row headers, and variable column layouts",
+        "Azure Active Directory integration for role-based access across supplier, procurement, and management tiers",
+        "Power Automate workflow triggers for purchase order approvals, discrepancy alerts, and delivery confirmations",
+        "Real-time material balance dashboard tracking inbound, allocated, and available stock per SKU",
+        "File upload system with validation, error reporting, and re-upload workflows for rejected manifests",
+        "Comprehensive audit trail logging all inventory movements, approvals, and system events",
+        "Responsive UI optimised for warehouse floor tablets as well as desktop procurement workstations"
+      ]
+    },
+    {
+      id: 3,
+      slug: "statesync",
+      title: "StateSync — Government Budget Platform",
+      description: "Enterprise state budget management system for Nagaland government handling multi-departmental fund allocations, project proposals, expenditure tracking, and utilisation certificate management across multiple financial years.",
+      tech: ["React", "Firebase", "Firestore", "Tailwind CSS", "Context API", "Firebase Auth", "Firebase Storage"],
+      github: null,
+      live: null,
+      featured: false,
+      hasImage: false,
+      image: "/projects/statesync.jpg",
+      fullDescription: "StateSync is a full-scale government budget management platform built for Nagaland's Planning Department, managing multi-billion rupee allocations across 15+ departments. The system handles the complete budget lifecycle — from annual planning and project proposals through to fund distribution, installment tracking, and utilisation certificate management. Features multi-level approval workflows, real-time auto-save, role-based access for government officials, and comprehensive audit trails for accountability.",
+      highlights: [
+        "Multi-level budget architecture: State Share, Department-wise, and Project-wise allocation tracking",
+        "Central Schemes integration for DoNER and NEC project management with installment lifecycle",
+        "Real-time auto-save with 1-second debounce preventing data loss without manual saves",
+        "Role-based access for Admin, Department Users, and View-only roles with granular permissions",
+        "Advanced notification system with meeting invites, committee management, and response tracking",
+        "Dynamic funding pattern validation supporting complex ratios (60:40, 10:20:70 multi-party)",
+        "30+ Firestore collections with optimised query patterns managing 15+ functional modules",
+        "CSV export for all reports with hierarchical department/sector subtotals and grand totals"
+      ]
+    },
+    {
+      id: 4,
       slug: "react-projects",
       title: "React Based Projects",
       description: "Engineered high-performance React applications including Food App, YouTube Clone, and Netflix Clone with real-time data fetching using Custom Hooks and Redux. Integrated Firebase for authentication and real-time data synchronization with 99.9% uptime.",
       tech: ["React", "Redux", "Firebase", "Tailwind CSS", "JavaScript", "REST APIs"],
       github: "https://github.com/sidharthagarwal",
       live: null,
-      featured: true,
+      featured: false,
       hasImage: false,
       image: "/projects/react-projects.jpg",
       fullDescription: "A collection of production-ready React applications demonstrating modern web development practices, state management, and real-time data handling.",
@@ -74,14 +142,14 @@ export const portfolioData = {
       ]
     },
     {
-      id: 2,
+      id: 5,
       slug: "paytm-clone",
       title: "Paytm Clone",
       description: "Full-stack payment application with secure payment gateway integration, real-time transaction tracking, and wallet management. Designed microservices architecture for payment processing with load balancing and error handling.",
       tech: ["MongoDB", "Express", "React", "Node.js", "JWT", "Microservices"],
       github: "https://github.com/sidharthagarwal",
       live: null,
-      featured: true,
+      featured: false,
       hasImage: false,
       image: "/projects/paytm-clone.jpg",
       fullDescription: "A comprehensive payment platform clone featuring secure transactions, wallet management, and microservices architecture for scalable payment processing.",
@@ -163,7 +231,7 @@ export const portfolioData = {
       "year": "2024-2025",
       "hasImage": false,
       "image": "/consulting/sikkim-budget-system.jpg",
-      "fullDescription": "Developed a comprehensive enterprise budget management system for the Sikkim Planning Department that digitized the entire state budget workflow. The system manages multi-billion rupee allocations across 15+ departments, handling everything from project proposals and approvals to fund distribution, installment tracking, and utilization certificate management. Built with advanced features like real-time auto-save, role-based access control, multi-level approval workflows, and complex financial calculations.",
+      "fullDescription": "Developed a comprehensive enterprise budget management system for the Sikkim Planning Department that digitized the entire state budget workflow. The system manages multi-billion rupee allocations across 15+ departments, handling everything from project proposals and approvals to fund distribution, installment tracking, and utilization certificate management.",
       highlights: [
         "Complete digitization of state budget planning and allocation processes eliminating paper-based workflows",
         "Multi-level budget management: State Share (50% allocation + common pool), Department-wise, and Project-wise allocations",
@@ -174,12 +242,7 @@ export const portfolioData = {
         "Session budget clearance system with UO number and date tracking",
         "Comprehensive notification system with meeting invites, committee management, and response tracking (Accept/Reject/Tentative)",
         "Role-based access control supporting Admin, Department Users, and View-only roles with granular permissions",
-        "Dynamic funding pattern validation supporting complex ratios (e.g., 60:40, 10:20:70 for multi-party funding)",
-        "Multi-level filtering system: Financial year, department, sector, and search-based filtering across all modules",
-        "User activity tracking showing who made changes and when for complete audit trails",
-        "Hierarchical data aggregation with department and sector-wise subtotals and grand totals",
-        "Responsive design fully functional across desktop, tablet, and mobile devices",
-        "File attachment support for notifications with image, PDF, and Excel file handling"
+        "Dynamic funding pattern validation supporting complex ratios (e.g., 60:40, 10:20:70 for multi-party funding)"
       ],
       impact: [
         "100% digital transformation eliminating all paper-based budget processes for the state government",
@@ -201,28 +264,7 @@ export const portfolioData = {
         "Installment Management: Track multiple installments per project with release dates, amounts, and physical progress percentage",
         "UC Management System: Handle utilization certificates with furnished and due amounts, auto-populating central/state share",
         "Session Budget Module: Integrate with annual budget sessions for clearance tracking and allocation monitoring",
-        "Overall Status View: Consolidated dashboard showing all projects with installments, UCs, balances, and remarks",
-        "Advanced Notification System: Multi-type notifications (General, Invitation, Meeting) with committee-based distribution",
-        "Committee Management: Create and manage user groups for targeted communication and approvals",
-        "Response Tracking: Monitor recipient responses (Accept/Reject/Tentative) with analytics and status views",
-        "Work Order Integration: Track work order numbers, issue dates, and scheduled completion dates",
-        "Real-time Collaboration: Auto-save mechanism with user attribution and timestamp tracking for all changes"
-      ],
-      technicalHighlights: [
-        "15+ major functional modules with complex interdependencies and data flow",
-        "30+ Firestore collections with optimized query patterns and indexing",
-        "50+ reusable React components with consistent design patterns",
-        "Custom debounced auto-save implementation preventing excessive writes (1-second delay)",
-        "Optimistic UI updates with background synchronization for instant user feedback",
-        "Dynamic calculation engine for totals, balances, and allocations with real-time updates",
-        "Hierarchical data aggregation with department and sector-wise grouping",
-        "Priority-based sorting system for departments based on administrative hierarchy",
-        "Advanced validation system for funding patterns, amounts, dates, and UO numbers",
-        "Custom filter hooks supporting multi-criteria filtering across all modules",
-        "Firebase Storage integration for document and file attachment management",
-        "Comprehensive error handling and validation with user-friendly error messages",
-        "Export capabilities for reports and analytics (CSV generation)",
-        "Multi-year financial data management with year-specific filtering and isolation"
+        "Overall Status View: Consolidated dashboard showing all projects with installments, UCs, balances, and remarks"
       ]
     },
     {
@@ -244,7 +286,7 @@ export const portfolioData = {
       "year": "2024-2025",
       "hasImage": false,
       "image": "/consulting/neissr-lms.jpg",
-      "fullDescription": "Developed a complete Learning Management System from scratch for NEISSR, an educational institution managing multiple courses and hundreds of students. The system digitalizes the entire academic workflow including student enrollment, course management, faculty assignments, timetable creation, attendance tracking, and result management. Built with a sophisticated role-based access control system supporting administrators, teachers, and students with tailored interfaces and permissions for each role.",
+      "fullDescription": "Developed a complete Learning Management System from scratch for NEISSR, an educational institution managing multiple courses and hundreds of students. The system digitalizes the entire academic workflow including student enrollment, course management, faculty assignments, timetable creation, attendance tracking, and result management.",
       highlights: [
         "Multi-role authentication system with granular permissions for Admin, Teacher, and Student roles with Firebase Authentication",
         "Comprehensive student management with 30+ data fields including personal details, academic records, family information, and document uploads",
@@ -253,11 +295,7 @@ export const portfolioData = {
         "Real-time attendance tracking with status options (Present, Absent, Late, Excused) and monthly calendar view for students",
         "Result management system with exam-wise mark entry, grade calculation, and performance analytics",
         "Faculty management with teaching assignments, schedule view, and workload tracking across academic years",
-        "User profile mapping system linking authentication accounts to institutional records (student/faculty)",
-        "Responsive design supporting mobile, tablet, and desktop with theme-aware UI components",
-        "Advanced filtering, searching, and sorting across all modules with CSV export functionality",
-        "Real-time data synchronization with optimistic UI updates and background sync",
-        "Activity management system for teachers to create and manage assignments, events, and announcements"
+        "User profile mapping system linking authentication accounts to institutional records (student/faculty)"
       ],
       keyFeatures: [
         "Role-Based Access Control: Three-tier permission system (Admin, Teacher, Student) with contextual UI rendering",
@@ -267,43 +305,18 @@ export const portfolioData = {
         "Attendance Management: Daily attendance marking with bulk operations, history tracking, and monthly calendar view",
         "Result Processing: Comprehensive exam result entry with automatic grade calculation and performance analytics",
         "Faculty Portal: Dedicated teacher interface for viewing schedule, marking attendance, and managing activities",
-        "Student Portal: Student dashboard with timetable view, attendance records, and activity notifications",
-        "User Mapping System: Sophisticated system linking user accounts to institutional records with sync functionality",
-        "Profile Management: Complete profile system with institutional data sync, profile pictures, and security settings",
-        "Activity Center: Platform for teachers to create assignments, announcements, and track student engagement",
-        "Analytics Dashboard: Real-time statistics and insights for administrators on enrollment, attendance, and performance"
-      ],
-      technicalHighlights: [
-        "50+ React components with consistent design patterns and reusable UI elements",
-        "Custom hooks for data management (useStudents, useFaculty, useTimetable, useAttendance, useResults)",
-        "Context-based state management for authentication, theme, and global app state",
-        "Firebase Firestore with optimized query patterns and real-time listeners",
-        "Advanced filtering engine supporting multi-criteria search across all entities",
-        "Responsive design system with mobile-first approach and adaptive layouts",
-        "Theme system supporting light/dark modes with CSS custom properties",
-        "Form validation with comprehensive error handling and user feedback",
-        "CSV export functionality for all major data entities",
-        "Optimistic UI updates with rollback mechanisms for better UX",
-        "Navigation system with breadcrumb tracking and role-based menu rendering",
-        "Modal-based workflows for complex data entry and editing operations",
-        "Calendar integration for attendance and timetable visualization",
-        "User activity tracking and audit trails for administrative actions"
+        "Student Portal: Student dashboard with timetable view, attendance records, and activity notifications"
       ],
       impact: [
         "Successfully digitized complete manual academic workflow eliminating paper-based processes",
         "Reduced administrative workload by 60% through automation of routine tasks",
         "Improved data accuracy and consistency with centralized database and validation",
-        "Enhanced communication between faculty, students, and administration",
-        "Enabled real-time attendance tracking improving accountability and monitoring",
         "Streamlined timetable creation reducing scheduling conflicts by 80%",
-        "Provided instant access to academic records and performance data for all stakeholders",
-        "Reduced time for result processing from days to hours with automated calculations",
-        "Improved parent-teacher communication through accessible student progress tracking",
         "Scaled to support 500+ concurrent users across admin, faculty, and student roles"
       ]
     },
     {
-      id: 6,
+      id: 4,
       slug: "nagaland-tourism-website",
       title: "Nagaland Tourism Official Portal",
       description: "Comprehensive tourism website for the Government of Nagaland showcasing 18+ tribes, festivals, destinations, and complete travel information. Features interactive UI, detailed tribal profiles, festival calendars, and essential tourist resources with responsive design.",
@@ -320,34 +333,27 @@ export const portfolioData = {
       year: "2024",
       hasImage: false,
       image: "/consulting/nagaland-tourism.jpg",
-      fullDescription: "Developed the official tourism portal for the Government of Nagaland's Department of Tourism, serving as the digital gateway for domestic and international tourists. The platform provides comprehensive information about Nagaland's rich cultural heritage, featuring detailed profiles of 18+ tribes, their unique festivals, tourist destinations, and essential travel services. Built with a focus on user experience, the website features interactive modal systems, smooth animations, and a responsive design that works seamlessly across all devices.",
+      fullDescription: "Developed the official tourism portal for the Government of Nagaland's Department of Tourism, serving as the digital gateway for domestic and international tourists. The platform provides comprehensive information about Nagaland's rich cultural heritage.",
       highlights: [
-        "Comprehensive tribal showcase with 18+ detailed tribe profiles featuring cultural information, traditional attire, and festival details with interactive modal views",
+        "Comprehensive tribal showcase with 18+ detailed tribe profiles featuring cultural information, traditional attire, and festival details",
         "Advanced festival calendar system displaying tribal festivals with timing, duration, significance, and district-wise categorization",
         "Tourist destinations explorer with rich media content, categorized listings, and detailed destination information",
-        "Integrated digital platform section with QR codes and download links for official tourism mobile apps (iOS and Android)",
-        "Complete travel resources including ILP/PAP permit information, accommodation listings (hotels and homestays), registered guides, and tour operators",
+        "Integrated digital platform section with QR codes and download links for official tourism mobile apps",
+        "Complete travel resources including ILP/PAP permit information, accommodation listings, registered guides, and tour operators",
         "Interactive image galleries with 100+ optimized assets using efficient URL mapping system for fast loading",
-        "News and events section with multi-image galleries and detailed content management",
-        "Downloadable resources including tourism policy documents, administrative reports, and tourist maps with direct PDF access",
-        "Custom modal system for detailed content exploration without page navigation maintaining user context",
-        "Smooth scroll animations using AOS library with carefully timed delays for enhanced visual appeal",
-        "Multi-page architecture with 25+ routes covering all aspects of Nagaland tourism",
-        "Responsive design optimized for desktop, tablet, and mobile devices with adaptive layouts"
+        "Multi-page architecture with 25+ routes covering all aspects of Nagaland tourism"
       ],
       impact: [
         "Official digital presence for Nagaland Tourism Department serving as primary information source for tourists",
         "Digital preservation of cultural heritage with detailed documentation of 18+ tribes and their traditions",
-        "Streamlined access to tourism services reducing time for permit information and service provider discovery",
-        "Enhanced discoverability of Nagaland as a tourist destination through comprehensive online presence",
-        "Improved tourist experience with centralized access to all necessary travel information and resources"
+        "Streamlined access to tourism services reducing time for permit information and service provider discovery"
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "slug": "ada-premiere-league-auction",
       "title": "Cricket Auction Management System",
-      "description": "Comprehensive real-time auction platform for office cricket tournament featuring live bidding, team wallet management, player statistics tracking, and automated result generation. Streamlined the entire auction process from player registration to team allocation with transaction integrity and Indian Rupee formatting.",
+      "description": "Comprehensive real-time auction platform for office cricket tournament featuring live bidding, team wallet management, player statistics tracking, and automated result generation.",
       "tech": [
         "React",
         "Firebase",
@@ -362,69 +368,28 @@ export const portfolioData = {
       "year": "2024",
       "hasImage": false,
       "image": "/consulting/ada-cricket-auction.jpg",
-      "fullDescription": "Built a complete auction management system from scratch for ADA Digital Analytics' office cricket tournament. The application digitized the entire cricket auction workflow, enabling seamless player registration with detailed statistics, team creation with wallet management, real-time live auction interface, and comprehensive result tracking with CSV export capabilities. The system ensured transaction integrity through Firebase transactions and provided an intuitive interface for non-technical users to conduct smooth auctions.",
+      "fullDescription": "Built a complete auction management system from scratch for ADA Digital Analytics' office cricket tournament. The application digitized the entire cricket auction workflow, enabling seamless player registration with detailed statistics, team creation with wallet management, real-time live auction interface, and comprehensive result tracking.",
       "highlights": [
-        "Real-time auction interface with live bidding controls and player queue visualization for seamless auction flow",
-        "Atomic transaction system using Firebase transactions preventing race conditions and ensuring data consistency during concurrent bids",
-        "Comprehensive player management with 15+ statistical fields including batting/bowling averages, strike rates, economy rates, and player specializations",
-        "CSV bulk import with intelligent column mapping supporting flexible headers and automatic gender/capped status detection",
-        "Team wallet management with Indian Rupee formatting (Lakh/Crore system) and real-time balance updates across all teams",
-        "Advanced bidding controls with quick increment buttons (₹5L, ₹10L, ₹20L, ₹50L) for efficient auction progression",
-        "Player categorization system supporting gender diversity tracking (Male/Female) and capped/uncapped status for balanced team composition",
-        "Team-wise result dashboard with comprehensive statistics, player allocation view, and CSV export for team rosters",
-        "Firebase Storage integration for player and team logo uploads with image preview and error handling",
-        "Responsive auction interface optimized for large screen displays during live events with sidebar team wallet status",
-        "Automated sold amount calculation with instant wallet deduction ensuring budget compliance throughout auction",
-        "Player status tracking system (Available → Sold/Unsold) with team assignment and price recording"
-      ],
-      keyFeatures: [
-        "Live Auction Room: Real-time bidding interface with current player display, team selection, bid amount controls, and action buttons (Sold/Unsold/Skip)",
-        "Player Management: Complete CRUD operations with detailed cricket statistics, image uploads, and CSV bulk import supporting 100+ players",
-        "Team Management: Team creation with ownership details (3 owners), captain assignments (male/female), wallet initialization, and logo uploads",
-        "Bidding System: Intelligent bidding with team wallet validation, increment buttons, real-time balance preview, and insufficient funds detection",
-        "Player Queue: Visual representation of upcoming players in auction with thumbnail view and quick player switching",
-        "Team Wallet Sidebar: Live wallet status for all teams showing available funds, post-bid balance, and player count with selection highlighting",
-        "Results Dashboard: Comprehensive view with team-wise player allocation, spending summary, and individual/aggregate CSV export",
-        "Statistics Tracking: Detailed batting stats (innings, runs, average, strike rate) and bowling stats (innings, wickets, average, economy)",
-        "Player Profiles: Complete player cards with images, badges (capped/uncapped, gender), specialization, styles, and base price",
-        "Transaction Integrity: Firebase transaction-based player sales ensuring atomic operations for player status updates and wallet deductions",
-        "Indian Currency Formatting: Custom utility for Lakh/Crore display system with proper comma placement (1,00,000 format)",
-        "Auction Summary: Real-time statistics showing total players, sold count, unsold count, and total amount spent across all teams"
-      ],
-      technicalHighlights: [
-        "Firebase Firestore transactions for atomic bid operations preventing data corruption",
-        "Custom React hooks for player and team data management with real-time synchronization",
-        "Context API for global state management of notifications and app-wide settings",
-        "Papaparse integration for robust CSV parsing with header transformation and error handling",
-        "Firebase Storage for image uploads with automatic URL generation and storage organization",
-        "Optimized Firestore queries with status-based filtering for available players",
-        "Reusable component library with Card, Button, Modal, Loading, and ErrorMessage components",
-        "Custom currency formatter utility for Indian numbering system (Lakh/Crore)",
-        "Responsive grid layouts with Tailwind CSS for auction interface and team cards",
-        "Form validation for player and team creation with comprehensive error handling",
-        "Real-time data listeners for wallet updates and player status changes",
-        "CSV export functionality with dynamic column generation and proper data formatting",
-        "Image error handling with fallback placeholders for broken image URLs",
-        "Debounced search and filtering across player and team lists"
+        "Real-time auction interface with live bidding controls and player queue visualization",
+        "Atomic transaction system using Firebase transactions preventing race conditions during concurrent bids",
+        "Comprehensive player management with 15+ statistical fields including batting/bowling averages and strike rates",
+        "CSV bulk import with intelligent column mapping supporting flexible headers",
+        "Team wallet management with Indian Rupee formatting (Lakh/Crore system) and real-time balance updates",
+        "Advanced bidding controls with quick increment buttons (₹5L, ₹10L, ₹20L, ₹50L)",
+        "Player categorization system supporting gender diversity tracking and capped/uncapped status"
       ],
       impact: [
-        "Successfully facilitated smooth auction for office cricket event with zero transaction errors",
+        "Successfully facilitated smooth auction with zero transaction errors",
         "Reduced auction time by 60% compared to manual paper-based processes",
-        "Managed 50+ players and 6 teams with real-time wallet tracking and instant result generation",
-        "Eliminated manual calculation errors through automated bid validation and wallet management",
-        "Provided instant visibility into team compositions, spending, and remaining budgets",
-        "Enabled quick player registration through CSV import reducing data entry time by 80%",
-        "Generated comprehensive team rosters with complete player details in exportable CSV format",
-        "Improved auction transparency with live wallet status and team selection indicators",
-        "Created audit trail of all transactions with player prices and team assignments",
-        "Enhanced user experience with intuitive interface requiring minimal training for auctioneers"
+        "Managed 50+ players and 6 teams with real-time wallet tracking",
+        "Eliminated manual calculation errors through automated bid validation"
       ]
     },
     {
-      "id": 5,
+      "id": 6,
       "slug": "dynamic-form-builder-system",
       "title": "Form Builder & Submission Management",
-      "description": "Production-ready React form builder with drag-and-drop interface, real-time Firebase integration, advanced submission management, and comprehensive export capabilities. Features 10+ field types, real-time validation, role-based access control, and Google Forms-style analytics dashboard.",
+      "description": "Production-ready React form builder with drag-and-drop interface, real-time Firebase integration, advanced submission management, and comprehensive export capabilities.",
       "tech": [
         "React",
         "Firebase",
@@ -439,70 +404,21 @@ export const portfolioData = {
       "year": "2024-2025",
       "hasImage": false,
       "image": "/consulting/form-builder-system.jpg",
-      "fullDescription": "Developed a comprehensive enterprise-grade form builder application from scratch that enables users to create, manage, and analyze dynamic forms without any coding knowledge. The system features an intuitive drag-and-drop interface for form creation, real-time Firebase synchronization for submissions, and a powerful analytics dashboard for data insights. Built with performance and scalability in mind, supporting thousands of submissions with advanced filtering, search, and export capabilities.",
+      "fullDescription": "Developed a comprehensive enterprise-grade form builder application enabling users to create, manage, and analyze dynamic forms without any coding knowledge. Features drag-and-drop interface, real-time Firebase synchronization, and a powerful analytics dashboard.",
       highlights: [
         "Drag-and-drop form builder with 10+ field types (text, email, number, date, file upload, rating, checkboxes, radio buttons, dropdowns, textarea)",
         "Real-time Firebase Firestore integration with optimistic UI updates and offline support",
-        "Enhanced submission storage architecture preserving complete field definitions (labels, types, validation rules) with each submission",
-        "Google Forms-style submission dashboard with tabular view, advanced filtering (date ranges, search), and real-time statistics",
-        "Comprehensive export system supporting CSV, Excel, and JSON formats with field metadata preservation",
-        "Advanced validation engine with 10+ validation types including required, min/max length, email, pattern matching, file size/type restrictions",
-        "Role-based access control supporting Admin, Editor, and Viewer roles with granular permissions",
-        "Real-time form preview with live updates as fields are added or modified",
-        "Field reordering via drag-and-drop with visual drop zones and smooth animations",
-        "Persistent storage system using Firebase Storage for file uploads with automatic URL generation",
-        "Submission analytics with field-level insights, response rates, completion scores, and data quality recommendations",
-        "Advanced filtering system with date range presets (today, last 7/30/90 days, custom ranges) and full-text search",
-        "Pagination with configurable page sizes (10/25/50/100 per page) and efficient data loading",
-        "Export history tracking with format breakdown, enhancement rate analytics, and size estimation"
-      ],
-      keyFeatures: [
-        "Form Builder Interface: Visual drag-and-drop editor with field type selector, real-time preview, and inline field editing with validation rules",
-        "10+ Field Types: Text, Email, Number, Date, Textarea, Select Dropdown, Radio Buttons, Checkboxes, File Upload, Star Rating with customizable properties",
-        "Enhanced Data Storage: Submissions stored with complete field definitions including labels, types, validation rules, and options for proper future display",
-        "Submission Dashboard: Google Forms-style table view with dynamic columns based on form fields, time-based statistics, and quality indicators",
-        "Advanced Filtering: Date range filters (predefined + custom), full-text search across all submission data, form-specific filtering",
-        "Export System: Multi-format export (CSV, Excel, JSON) with field metadata, batch export, filtered export, and export history tracking",
-        "Real-time Sync: Firebase Firestore integration with real-time listeners, optimistic updates, and automatic conflict resolution",
-        "Field Validation: Comprehensive validation with required fields, min/max lengths, email validation, number ranges, date constraints, file restrictions",
-        "Analytics Dashboard: Submission statistics by time period, field usage analysis, response rate tracking, data quality scoring with recommendations",
-        "Role Management: Admin (full access), Editor (create/edit forms), Viewer (view-only) with permission-based UI rendering",
-        "Form Management: Create, edit, duplicate, delete forms with version tracking and submission count monitoring",
-        "Responsive Design: Fully responsive interface with mobile, tablet, and desktop optimizations using Tailwind CSS",
-        "File Upload Handling: Firebase Storage integration with multiple file support, file type restrictions, size validation, and download URL management",
-        "Search & Pagination: Full-text search with field label matching, configurable pagination, sort options (newest/oldest first)"
-      ],
-      technicalHighlights: [
-        "50+ React components with consistent design patterns and reusable architecture",
-        "Custom hooks ecosystem: useFormBuilder, useValidation, useDragDrop, useSubmissions, useExport, useFilters, usePagination",
-        "Context-based state management with FormBuilderProvider and SubmissionsProvider for clean data flow",
-        "Firebase Firestore with optimized queries, real-time listeners, and transaction-based operations",
-        "DnD Kit integration for smooth drag-and-drop with collision detection, accessibility support, and keyboard navigation",
-        "Advanced validation system with field-level and form-level validation, cross-field validation support, and real-time error feedback",
-        "Export service with CSV/Excel/JSON generation, field metadata preservation, UTF-8 BOM support, and size estimation",
-        "Modular architecture with clear separation: components, hooks, services, utils for maintainability",
-        "Firebase Storage for file management with automatic cleanup and URL generation",
-        "Comprehensive error handling with user-friendly messages and fallback mechanisms",
-        "Performance optimizations: lazy loading, pagination, debounced search, optimistic UI updates",
-        "Type safety through JSDoc comments and consistent prop validation",
-        "Accessibility features: keyboard navigation, ARIA labels, screen reader support, focus management"
+        "Enhanced submission storage architecture preserving complete field definitions with each submission",
+        "Google Forms-style submission dashboard with tabular view, advanced filtering, and real-time statistics",
+        "Comprehensive export system supporting CSV, Excel, and JSON formats",
+        "Advanced validation engine with 10+ validation types",
+        "Role-based access control supporting Admin, Editor, and Viewer roles"
       ],
       impact: [
-        "Eliminated need for expensive third-party form builder subscriptions saving client significant recurring costs",
-        "Enabled non-technical users to create complex forms in minutes without developer assistance",
+        "Eliminated need for expensive third-party form builder subscriptions",
+        "Enabled non-technical users to create complex forms in minutes",
         "Processed 1000+ form submissions with zero data loss and 99.9% uptime",
-        "Reduced form creation time from hours (custom development) to minutes (drag-and-drop)",
-        "Enhanced data quality with field-level validation reducing invalid submissions by 90%+",
-        "Provided comprehensive analytics enabling data-driven decision making for form optimization",
-        "Flexible export system supporting multiple formats for integration with external systems",
-        "Real-time synchronization enabling collaborative form management across multiple users"
-      ],
-      "challenges": [
-        "Architecting submission storage to preserve field definitions for proper data display even when forms are modified",
-        "Implementing smooth drag-and-drop for both field reordering and new field insertion with visual feedback",
-        "Building a flexible validation system supporting 10+ field types with customizable rules",
-        "Optimizing Firebase queries for large datasets while maintaining real-time updates",
-        "Creating a Google Forms-style dynamic table that adapts to different field types and counts"
+        "Reduced form creation time from hours to minutes"
       ]
     },
     {
@@ -515,22 +431,19 @@ export const portfolioData = {
       year: "2024",
       hasImage: false,
       image: "/consulting/portfolio-website-react.jpg",
-      fullDescription: "Developed a professional portfolio website from scratch using React and modern web technologies. The site features a fully responsive design, dynamic dark/light theme switching, smooth scroll animations, and an intuitive navigation system. Built with performance and user experience in mind, implementing lazy loading, intersection observers, and optimized rendering.",
+      fullDescription: "Developed a professional portfolio website from scratch using React and modern web technologies. The site features a fully responsive design, dynamic dark/light theme switching, smooth scroll animations, and an intuitive navigation system.",
       highlights: [
         "Implemented custom React hooks for scroll spy navigation and intersection observer animations",
         "Built responsive navigation with smooth scrolling and active section highlighting",
         "Created reusable component library with Card, Button, and SectionTitle components",
         "Integrated dynamic routing for project and consulting detail pages",
         "Designed custom CSS theme system with dark/light mode support using CSS variables",
-        "Optimized performance with lazy loading and efficient state management",
-        "Implemented accessibility features with proper ARIA labels and keyboard navigation",
-        "Built custom scroll progress indicator and smooth page transitions"
+        "Optimized performance with lazy loading and efficient state management"
       ],
       impact: [
         "Achieved 95+ Lighthouse performance score",
         "100% responsive across all device sizes and browsers",
-        "Reduced initial load time with code splitting and lazy loading",
-        "Improved user engagement with smooth animations and interactive elements"
+        "Reduced initial load time with code splitting and lazy loading"
       ]
     }
   ],
@@ -540,7 +453,7 @@ export const portfolioData = {
     frontend: ["HTML", "CSS", "Tailwind CSS", "ShadCN", "React", "Redux", "Webpack"],
     backend: ["Node.js", "Express", "Flask", "REST APIs", "JWT", "Spring Boot"],
     databases: ["MySQL", "PostgreSQL", "MongoDB"],
-    cloud: ["AWS", "Firebase"],
+    cloud: ["AWS", "Azure", "Firebase"],
     tools: ["Git", "Docker", "VWO", "Postman"]
   },
 

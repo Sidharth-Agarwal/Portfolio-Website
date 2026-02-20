@@ -241,7 +241,7 @@ body {
   box-shadow: var(--shadow-xl);
 }
 
-/* ── Button secondary hover fill (fractional opacity not in Tailwind base) */
+/* ── Button secondary hover fill ─────────────────────────────────── */
 .btn-secondary-hover:hover {
   background-color: rgb(var(--accent) / 0.08);
 }

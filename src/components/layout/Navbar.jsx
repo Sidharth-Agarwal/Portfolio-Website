@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 import { useScrollProgress } from '../../hooks/useScrollProgress';
 import ThemeToggle from '../common/ThemeToggle';
+import { portfolioData } from '../../data/portfolioData';
 
 const navLinks = [
   { label: 'About',      section: 'about'      },
   { label: 'Experience', section: 'experience' },
+  { label: 'Projects',   section: 'projects'   },
   { label: 'Consulting', section: 'consulting' },
   { label: 'Skills',     section: 'skills'     },
   { label: 'Contact',    section: 'contact'    },
@@ -22,11 +24,11 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen]   = useState(false);
   const [indicator, setIndicator]     = useState({ left: 0, width: 0, opacity: 0 });
 
-  const activeSection = useScrollSpy(sectionIds);
+  const activeSection  = useScrollSpy(sectionIds);
   const scrollProgress = useScrollProgress();
 
-  const navBarRef   = useRef(null);   // the flex container that holds buttons
-  const itemRefs    = useRef({});     // section → button element
+  const navBarRef = useRef(null);
+  const itemRefs  = useRef({});
 
   /* ── Scroll detection ─────────────────────────────────────────── */
   useEffect(() => {
@@ -44,7 +46,6 @@ const Navbar = () => {
     const bar = navBarRef.current;
     if (!el || !bar) { setIndicator(p => ({ ...p, opacity: 0 })); return; }
 
-    // Use requestAnimationFrame so layout is settled
     const frame = requestAnimationFrame(() => {
       const barRect = bar.getBoundingClientRect();
       const elRect  = el.getBoundingClientRect();
@@ -133,6 +134,21 @@ const Navbar = () => {
           <div className="ml-1">
             <ThemeToggle />
           </div>
+
+          <div className="w-px h-4 bg-border/70 mx-0.5" />
+
+          {/* Resume download */}
+          <a
+            href={portfolioData.personal.resume}
+            download
+            className="ml-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold
+                       bg-accent/10 border border-accent/25 text-accent
+                       hover:bg-accent hover:text-white hover:border-accent
+                       transition-all duration-300"
+          >
+            <Download className="w-3 h-3" />
+            <span>Resume</span>
+          </a>
         </div>
 
         {/* Thin progress bar anchored under the pill */}
@@ -161,6 +177,17 @@ const Navbar = () => {
           <div className="container mx-auto px-4 flex items-center justify-between h-16">
             <Link to="/" className="text-base font-bold gradient-text">SA</Link>
             <div className="flex items-center gap-3">
+              {/* Resume download — mobile */}
+              <a
+                href={portfolioData.personal.resume}
+                download
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold
+                           bg-accent/10 border border-accent/25 text-accent
+                           hover:bg-accent hover:text-white transition-all duration-300"
+              >
+                <Download className="w-3 h-3" />
+                <span>CV</span>
+              </a>
               <ThemeToggle />
               <button
                 onClick={() => setMobileOpen((p) => !p)}
@@ -179,7 +206,7 @@ const Navbar = () => {
           className={`
             overflow-hidden transition-all duration-300 ease-out
             bg-bg-primary/95 backdrop-blur-xl border-b border-border/50
-            ${mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}
+            ${mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
           `}
         >
           <div className="container mx-auto px-4 py-3 flex flex-col gap-1">

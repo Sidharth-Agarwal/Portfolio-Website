@@ -6,14 +6,21 @@ import SectionTitle from '../common/SectionTitle';
 import Button from '../common/Button';
 import { scrollToElement } from '../../utils/helpers';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useTilt } from '../../hooks/useTilt';
 
 const ConsultingCard = ({ project, index }) => {
-  const navigate = useNavigate();
-  const [ref, isVisible] = useIntersectionObserver();
+  const navigate      = useNavigate();
+  const [intersectRef, isVisible] = useIntersectionObserver();
+  const tiltRef       = useTilt({ max: 5, 'max-glare': 0.07 });
+
+  const setRef = (node) => {
+    intersectRef.current = node;
+    tiltRef.current = node;
+  };
 
   return (
     <div
-      ref={ref}
+      ref={setRef}
       onClick={() => navigate(`/consulting/${project.slug}`)}
       className={`
         group relative rounded-2xl glass-card cursor-pointer overflow-hidden
@@ -39,18 +46,17 @@ const ConsultingCard = ({ project, index }) => {
             <Users className="w-2.5 h-2.5 text-accent flex-shrink-0" />
             <span className="text-accent text-[11px] font-bold truncate">{project.client}</span>
           </div>
-          {/* Title — primary focal point */}
           <h3 className="text-lg font-bold text-text-primary leading-snug group-hover:text-accent transition-colors duration-300">
             {project.title}
           </h3>
         </div>
 
-        {/* Description — clearly secondary */}
+        {/* Description */}
         <p className="text-text-tertiary text-xs leading-relaxed line-clamp-2 flex-1">
           {project.description}
         </p>
 
-        {/* Tech tags — dimmest element */}
+        {/* Tech tags */}
         <div className="flex flex-wrap gap-1.5">
           {project.tech.slice(0, 4).map((tech, i) => (
             <span key={i} className="px-2 py-0.5 rounded-md text-[11px] font-medium border border-border/60 bg-bg-tertiary/50 text-text-quaternary group-hover:border-accent/25 group-hover:text-accent/70 transition-all duration-300">
@@ -66,7 +72,7 @@ const ConsultingCard = ({ project, index }) => {
 
         <div className="h-px bg-gradient-to-r from-transparent via-border/40 to-transparent" />
 
-        {/* Footer — date left, CTA right (only accent element) */}
+        {/* Footer */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1.5 text-text-quaternary text-[11px]">
             <Calendar className="w-3 h-3 flex-shrink-0" />
@@ -91,7 +97,7 @@ const Consulting = () => {
       <div aria-hidden="true" className="absolute bottom-1/3 left-0 w-[500px] h-[500px] bg-accent-light/[0.04] rounded-full blur-[130px] pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <SectionTitle number="03" subtitle="Client projects and consulting engagements">
+        <SectionTitle number="04" subtitle="Client projects and consulting engagements">
           Consulting Work
         </SectionTitle>
 

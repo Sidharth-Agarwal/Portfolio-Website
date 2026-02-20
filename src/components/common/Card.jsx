@@ -1,14 +1,23 @@
 import React from 'react';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useTilt } from '../../hooks/useTilt';
 
 const Card = ({
   children,
   className = '',
   hover = true,
   animate = true,
+  tilt = true,
   onClick,
 }) => {
-  const [ref, isVisible] = useIntersectionObserver();
+  const [intersectRef, isVisible] = useIntersectionObserver();
+  const tiltRef = useTilt({ max: 6, 'max-glare': 0.08 });
+
+  // Merge both refs onto the same DOM node
+  const setRef = (node) => {
+    intersectRef.current = node;
+    if (tilt) tiltRef.current = node;
+  };
 
   const baseStyles = 'bg-card-bg border border-border rounded-2xl p-8 transition-all duration-500 relative';
   const hoverStyles = hover ? 'hover:shadow-2xl hover:-translate-y-2 hover:border-accent cursor-pointer' : '';
@@ -16,15 +25,15 @@ const Card = ({
 
   return (
     <div
-      ref={ref}
+      ref={setRef}
       className={`${baseStyles} ${hoverStyles} ${animateStyles} ${className}`}
       onClick={onClick}
     >
       {/* Subtle gradient overlay on hover */}
       {hover && (
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
       )}
-      
+
       {/* Content */}
       <div className="relative z-10">
         {children}

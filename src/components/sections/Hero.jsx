@@ -1,13 +1,15 @@
 import React, { useState, useRef } from 'react';
-import { ArrowRight, Github } from 'lucide-react';
+import { ArrowRight, Github, Download } from 'lucide-react';
+import CountUp from 'react-countup';
+import { TypeAnimation } from 'react-type-animation';
 import { portfolioData } from '../../data/portfolioData';
 import Button from '../common/Button';
 import { scrollToElement } from '../../utils/helpers';
 
 const stats = [
-  { value: '1.5+', label: 'Years Exp.' },
-  { value: '10+',  label: 'Projects'   },
-  { value: '700+', label: 'Mentored'   },
+  { end: 1.5, suffix: '+', decimals: 1, label: 'Years Exp.'  },
+  { end: 10,  suffix: '+', decimals: 0, label: 'Projects'    },
+  { end: 700, suffix: '+', decimals: 0, label: 'Mentored'    },
 ];
 
 const Hero = () => {
@@ -74,9 +76,24 @@ const Hero = () => {
             </h1>
           </div>
 
-          {/* Tagline */}
-          <h2 className="text-lg md:text-xl font-semibold text-text-secondary mb-3 max-w-xl leading-snug opacity-0 hero-reveal" style={{ animationDelay: '0.35s' }}>
-            {personal.tagline}
+          {/* Typing animation tagline */}
+          <h2
+            className="text-lg md:text-xl font-semibold text-text-secondary mb-3 max-w-xl leading-snug opacity-0 hero-reveal"
+            style={{ animationDelay: '0.35s', minHeight: '1.75rem' }}
+          >
+            <TypeAnimation
+              sequence={[
+                'Full-Stack Developer',          1800,
+                'Healthcare Systems Engineer',   1800,
+                'React & Node.js Specialist',    1800,
+                'Quantitative Finance Enthusiast', 1800,
+              ]}
+              wrapper="span"
+              speed={55}
+              repeat={Infinity}
+              cursor={true}
+              style={{ display: 'inline-block' }}
+            />
           </h2>
 
           {/* Bio */}
@@ -92,14 +109,26 @@ const Hero = () => {
             <Button variant="secondary" size="lg" href={personal.github} icon={Github} iconPosition="left">
               View GitHub
             </Button>
+            <Button variant="secondary" size="lg" href={personal.resume} icon={Download} iconPosition="left">
+              Download Resume
+            </Button>
           </div>
 
-          {/* Stats — inline strip, not cards */}
+          {/* Stats — animated with react-countup */}
           <div className="flex items-center gap-8 opacity-0 hero-reveal" style={{ animationDelay: '0.64s' }}>
             {stats.map((s, i) => (
               <React.Fragment key={s.label}>
                 <div>
-                  <div className="text-2xl font-black gradient-text leading-none">{s.value}</div>
+                  <div className="text-2xl font-black gradient-text leading-none">
+                    <CountUp
+                      end={s.end}
+                      decimals={s.decimals}
+                      suffix={s.suffix}
+                      duration={2.5}
+                      enableScrollSpy
+                      scrollSpyOnce
+                    />
+                  </div>
                   <div className="text-[11px] text-text-quaternary mt-1 tracking-wide">{s.label}</div>
                 </div>
                 {i < stats.length - 1 && (

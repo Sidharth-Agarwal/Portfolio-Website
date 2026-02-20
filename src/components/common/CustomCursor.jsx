@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 /**
- * Two-layer custom cursor:
- *  • Dot   — snaps instantly to the mouse position
- *  • Ring  — lerp-follows with a slight lag for smoothness
+ * Two-layer custom cursor with mix-blend-mode: exclusion for automatic
+ * contrast against both dark and light themes.
  *
- * On hoverable elements the dot shrinks to nothing and the ring
- * expands + fills subtly — creating a "halo" effect.
+ *  • Dot   — snaps instantly, white (inverted by exclusion)
+ *  • Ring  — lerp-follows with lag, inverted ring
  *
- * Hidden automatically on touch-only devices via the (hover: none) media query.
+ * Disabled on touch devices automatically.
  */
 const CustomCursor = () => {
   const dotRef  = useRef(null);
@@ -20,25 +19,20 @@ const CustomCursor = () => {
   const [hovered,  setHovered]  = useState(false);
   const [clicking, setClicking] = useState(false);
 
+  // Detect touch device — hide cursor entirely
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches;
+
   useEffect(() => {
-    // Bail out on touch-only devices — no cursor needed
-    if (window.matchMedia('(hover: none)').matches) return;
+    if (isTouch) return;
 
-    /* ── Track mouse position ─────────────────────────────────── */
-    const onMove = (e) => {
-      mouse.current = { x: e.clientX, y: e.clientY };
-    };
+    const onMove = (e) => { mouse.current = { x: e.clientX, y: e.clientY }; };
 
-    /* ── Detect hover state via event delegation ──────────────── */
     const INTERACTIVE = 'a, button, [role="button"], input, textarea, select, label, [tabindex]';
-    const onOver = (e) => setHovered(!!e.target.closest(INTERACTIVE));
+    const onOver  = (e) => setHovered(!!e.target.closest(INTERACTIVE));
+    const onDown  = () => setClicking(true);
+    const onUp    = () => setClicking(false);
 
-    /* ── Click feedback ───────────────────────────────────────── */
-    const onDown = () => setClicking(true);
-    const onUp   = () => setClicking(false);
-
-    /* ── Animation loop ───────────────────────────────────────── */
-    const LERP = 0.10; // lower = more lag on the ring
+    const LERP = 0.10;
     const tick = () => {
       ring.current.x += (mouse.current.x - ring.current.x) * LERP;
       ring.current.y += (mouse.current.y - ring.current.y) * LERP;
@@ -54,11 +48,14 @@ const CustomCursor = () => {
       raf.current = requestAnimationFrame(tick);
     };
 
-    window.addEventListener('mousemove',  onMove, { passive: true });
-    document.addEventListener('mouseover', onOver, { passive: true });
+    window.addEventListener('mousemove',  onMove,  { passive: true });
+    document.addEventListener('mouseover', onOver,  { passive: true });
     window.addEventListener('mousedown',  onDown);
     window.addEventListener('mouseup',    onUp);
     raf.current = requestAnimationFrame(tick);
+
+    // Hide default cursor
+    document.body.style.cursor = 'none';
 
     return () => {
       window.removeEventListener('mousemove',  onMove);
@@ -66,50 +63,45 @@ const CustomCursor = () => {
       window.removeEventListener('mousedown',  onDown);
       window.removeEventListener('mouseup',    onUp);
       cancelAnimationFrame(raf.current);
+      document.body.style.cursor = '';
     };
-  }, []);
+  }, [isTouch]);
 
-  // Don't render anything on touch devices
-  if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) {
-    return null;
-  }
+  if (isTouch) return null;
 
   return (
     <>
-      {/* ── Dot ─────────────────────────────────────────────── */}
+      {/* ── Dot ── */}
       <div
         ref={dotRef}
         aria-hidden="true"
         className="fixed top-0 left-0 z-[9999] pointer-events-none"
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', mixBlendMode: 'exclusion' }}
       >
         <div
-          className={`
-            rounded-full bg-accent transition-all duration-150 ease-out
-            ${hovered  ? 'w-0 h-0 opacity-0'                : ''}
-            ${clicking ? 'w-1.5 h-1.5 opacity-60'          : ''}
-            ${!hovered && !clicking ? 'w-2 h-2 opacity-90' : ''}
-          `}
+          className="rounded-full bg-white transition-all duration-150 ease-out"
+          style={{
+            width:   hovered ? 0 : clicking ? '6px' : '8px',
+            height:  hovered ? 0 : clicking ? '6px' : '8px',
+            opacity: hovered ? 0 : clicking ? 0.6 : 0.9,
+          }}
         />
       </div>
 
-      {/* ── Ring ────────────────────────────────────────────── */}
+      {/* ── Ring ── */}
       <div
         ref={ringRef}
         aria-hidden="true"
         className="fixed top-0 left-0 z-[9999] pointer-events-none"
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', mixBlendMode: 'exclusion' }}
       >
         <div
-          className={`
-            rounded-full border border-accent transition-all duration-300 ease-out
-            ${hovered
-              ? 'w-10 h-10 border-accent/50 bg-accent/[0.07]'
-              : clicking
-                ? 'w-5 h-5 border-accent/80 bg-transparent'
-                : 'w-7 h-7 border-accent/50 bg-transparent'
-            }
-          `}
+          className="rounded-full border border-white transition-all duration-300 ease-out"
+          style={{
+            width:           hovered ? '48px' : clicking ? '20px' : '32px',
+            height:          hovered ? '48px' : clicking ? '20px' : '32px',
+            backgroundColor: hovered ? 'rgba(255,255,255,0.12)' : 'transparent',
+          }}
         />
       </div>
     </>

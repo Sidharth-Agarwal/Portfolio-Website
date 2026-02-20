@@ -1,92 +1,87 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        'bg-primary':      'rgb(var(--bg-primary) / <alpha-value>)',
-        'bg-secondary':    'rgb(var(--bg-secondary) / <alpha-value>)',
-        'bg-tertiary':     'rgb(var(--bg-tertiary) / <alpha-value>)',
-        'accent':          'rgb(var(--accent) / <alpha-value>)',
-        'accent-hover':    'rgb(var(--accent-hover) / <alpha-value>)',
-        'accent-light':    'rgb(var(--accent-light) / <alpha-value>)',
-        'border':          'rgb(var(--border) / <alpha-value>)',
-        'card-bg':         'rgb(var(--card-bg) / <alpha-value>)',
-        'text-primary':    'var(--text-primary)',
-        'text-secondary':  'var(--text-secondary)',
-        'text-tertiary':   'var(--text-tertiary)',
+        accent: 'rgb(var(--accent) / <alpha-value>)',
+        'accent-hover': 'rgb(var(--accent-hover) / <alpha-value>)',
+        'accent-light': 'rgb(var(--accent-light) / <alpha-value>)',
+        border: 'rgb(var(--border) / <alpha-value>)',
+        'bg-primary': 'rgb(var(--bg-primary) / <alpha-value>)',
+        'bg-secondary': 'rgb(var(--bg-secondary) / <alpha-value>)',
+        'bg-tertiary': 'rgb(var(--bg-tertiary) / <alpha-value>)',
+        'card-bg': 'rgb(var(--card-bg) / <alpha-value>)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'text-tertiary': 'var(--text-tertiary)',
         'text-quaternary': 'var(--text-quaternary)',
       },
-      animation: {
-        'fade-in-up':     'fadeInUp 0.6s ease-out',
-        'fade-in':        'fadeIn 0.4s ease-out',
-        'slide-in-left':  'slideInLeft 0.6s ease-out',
-        'slide-in-right': 'slideInRight 0.6s ease-out',
-        'scale-in':       'scaleIn 0.5s ease-out',
-        'float':          'float 3s ease-in-out infinite',
-        'pulse-slow':     'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
       keyframes: {
-        fadeInUp: {
-          '0%':   { opacity: '0', transform: 'translateY(30px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)'    },
+        /* ── Gradient text sweep ── */
+        gradientShift: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%':       { backgroundPosition: '100% 50%' },
         },
-        fadeIn: {
-          '0%':   { opacity: '0' },
-          '100%': { opacity: '1' },
+        /* ── Aurora blobs ── */
+        aurora1: {
+          '0%, 100%': { transform: 'translate(0%, 0%) scale(1)' },
+          '33%':      { transform: 'translate(3%, -2%) scale(1.05)' },
+          '66%':      { transform: 'translate(-2%, 3%) scale(0.97)' },
         },
-        slideInLeft: {
-          '0%':   { opacity: '0', transform: 'translateX(-30px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)'     },
+        aurora2: {
+          '0%, 100%': { transform: 'translate(0%, 0%) scale(1)' },
+          '33%':      { transform: 'translate(-4%, 2%) scale(1.08)' },
+          '66%':      { transform: 'translate(3%, -3%) scale(0.95)' },
         },
-        slideInRight: {
-          '0%':   { opacity: '0', transform: 'translateX(30px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)'    },
+        aurora3: {
+          '0%, 100%': { transform: 'translate(0%, 0%) scale(1)' },
+          '50%':      { transform: 'translate(2%, 4%) scale(1.04)' },
         },
-        scaleIn: {
-          '0%':   { opacity: '0', transform: 'scale(0.95)' },
-          '100%': { opacity: '1', transform: 'scale(1)'    },
+        /* ── Preloader bar ── */
+        preloaderBar: {
+          '0%':   { width: '0%' },
+          '100%': { width: '100%' },
         },
+        /* ── Float ── */
         float: {
-          '0%, 100%': { transform: 'translateY(0px)'   },
-          '50%':      { transform: 'translateY(-10px)' },
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%':      { transform: 'translateY(-12px)' },
+        },
+        /* ── Marquee ── */
+        marqueeLeft: {
+          from: { transform: 'translateX(0)' },
+          to:   { transform: 'translateX(-50%)' },
+        },
+        marqueeRight: {
+          from: { transform: 'translateX(-50%)' },
+          to:   { transform: 'translateX(0)' },
+        },
+        /* ── Pulse ── */
+        pulse: {
+          '0%, 100%': { opacity: '1' },
+          '50%':      { opacity: '0.5' },
+        },
+        /* ── Spin ── */
+        spin: {
+          from: { transform: 'rotate(0deg)' },
+          to:   { transform: 'rotate(360deg)' },
         },
       },
-      boxShadow: {
-        'sm':  'var(--shadow-sm)',
-        'md':  'var(--shadow-md)',
-        'lg':  'var(--shadow-lg)',
-        'xl':  'var(--shadow-xl)',
-        '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+      animation: {
+        'gradient':      'gradientShift 6s ease infinite',
+        'aurora-1':      'aurora1 12s ease-in-out infinite',
+        'aurora-2':      'aurora2 15s ease-in-out infinite',
+        'aurora-3':      'aurora3 10s ease-in-out infinite',
+        'preloader-bar': 'preloaderBar 1.8s cubic-bezier(0.4,0,0.2,1) forwards',
+        'float':         'float 3s ease-in-out infinite',
+        'marquee-left':  'marqueeLeft 50s linear infinite',
+        'marquee-right': 'marqueeRight 60s linear infinite',
+        'pulse':         'pulse 2s cubic-bezier(0.4,0,0.6,1) infinite',
+        'spin':          'spin 1s linear infinite',
       },
-      backdropBlur: {
-        xs: '2px',
-      },
-      borderRadius: {
-        '4xl': '2rem',
-      },
-      spacing: {
-        '18':  '4.5rem',
-        '88':  '22rem',
-        '100': '25rem',
-        '112': '28rem',
-        '128': '32rem',
-      },
-      fontSize: {
-        '2xs': '0.625rem',
-      },
-      transitionDuration: {
-        '400': '400ms',
-        '600': '600ms',
-        '800': '800ms',
-        '900': '900ms',
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':  'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      backgroundSize: {
+        '300%': '300% 300%',
       },
     },
   },

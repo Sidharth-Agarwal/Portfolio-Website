@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Section heading with GSAP SplitText line-mask reveal on scroll.
- * Falls back gracefully if SplitText is unavailable.
+ * Section heading with GSAP fade+slide reveal on scroll.
  *
  * Props:
  *  children  — main heading text
@@ -41,29 +39,14 @@ const SectionTitle = ({ children, subtitle, number }) => {
         );
       }
 
-      // Heading — SplitText line mask
+      // Heading — simple fade + slide
       if (headingRef.current) {
-        try {
-          const split = SplitText.create(headingRef.current, {
-            type: 'lines',
-            mask: 'lines',
-            linesClass: 'split-line-mask',
-          });
-          tl.fromTo(
-            split.lines,
-            { yPercent: 110, opacity: 0 },
-            { yPercent: 0, opacity: 1, stagger: 0.08, duration: 0.75, ease: 'power3.out' },
-            0.1,
-          );
-        } catch {
-          // SplitText unavailable — simple fade
-          tl.fromTo(
-            headingRef.current,
-            { opacity: 0, y: 24 },
-            { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' },
-            0.1,
-          );
-        }
+        tl.fromTo(
+          headingRef.current,
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' },
+          0.1,
+        );
       }
 
       // Underline
@@ -94,7 +77,7 @@ const SectionTitle = ({ children, subtitle, number }) => {
     <div ref={wrapRef} className="text-center mb-16">
       {/* Numbered anchor */}
       {number && (
-        <div ref={numberRef} className="inline-flex items-center gap-2.5 mb-5" style={{ opacity: 0 }}>
+        <div ref={numberRef} className="flex items-center justify-center gap-2.5 mb-5" style={{ opacity: 0 }}>
           <div className="h-px w-8 bg-gradient-to-r from-transparent to-accent/50" />
           <span className="text-[11px] font-bold tracking-[0.22em] text-text-quaternary uppercase">
             {number}

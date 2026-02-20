@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
  * Initialises Lenis smooth scroll and wires it to GSAP's ScrollTrigger
  * so that scroll-linked animations stay perfectly in sync.
  *
- * Returns the Lenis instance so callers can call lenis.scrollTo() etc.
+ * Returns the Lenis instance ref so callers can call lenis.scrollTo() etc.
  */
 export const useSmoothScroll = () => {
   const lenisRef = useRef(null);
@@ -29,14 +29,13 @@ export const useSmoothScroll = () => {
     // Keep ScrollTrigger in sync with Lenis positions
     lenis.on('scroll', ScrollTrigger.update);
 
-    // Add Lenis raf to GSAP ticker
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+    // Store the RAF function reference so the same ref is used for cleanup
+    const rafFn = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(rafFn);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      gsap.ticker.remove(rafFn); // ✅ same ref — actually gets removed
       lenis.destroy();
     };
   }, []);

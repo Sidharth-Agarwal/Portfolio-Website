@@ -9,7 +9,7 @@ import { portfolioData } from '../../data/portfolioData';
 const navLinks = [
   { label: 'About',      section: 'about'      },
   { label: 'Experience', section: 'experience' },
-  { label: 'Projects',   section: 'projects'   },
+  // { label: 'Projects',   section: 'projects'   },
   { label: 'Consulting', section: 'consulting' },
   { label: 'Skills',     section: 'skills'     },
   { label: 'Contact',    section: 'contact'    },

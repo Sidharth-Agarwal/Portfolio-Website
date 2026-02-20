@@ -235,9 +235,6 @@ const Contact = () => {
           {/* ── Right column ── */}
           <div className="flex flex-col gap-4">
 
-            {/* Contact form */}
-            <ContactForm />
-
             {/* Terminal */}
             <div className="rounded-2xl glass-card overflow-hidden hover:border-accent/40 transition-all duration-300">
               {/* Chrome bar */}
@@ -287,6 +284,9 @@ const Contact = () => {
                 </div>
               </div>
             </div>
+
+            {/* Contact form */}
+            <ContactForm />
           </div>
         </div>
       </div>

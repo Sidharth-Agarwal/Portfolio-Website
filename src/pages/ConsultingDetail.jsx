@@ -42,7 +42,11 @@ const BulletList = ({ items, marker = '✓' }) => (
 const ConsultingDetail = () => {
   const { consultingId } = useParams();
   const navigate = useNavigate();
-  const project = portfolioData.consulting.find(p => p.slug === consultingId);
+
+  // Look up from the merged work array, filtered to consulting only
+  const project = portfolioData.work.find(
+    p => p.slug === consultingId && p.type === 'consulting'
+  );
 
   useEffect(() => {
     if (!project) setTimeout(() => navigate('/'), 2000);
@@ -64,7 +68,6 @@ const ConsultingDetail = () => {
       {/* Ambient glows */}
       <div aria-hidden="true" className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/[0.05] rounded-full blur-[130px] pointer-events-none" />
       <div aria-hidden="true" className="absolute bottom-1/3 left-0 w-[400px] h-[400px] bg-accent-light/[0.05] rounded-full blur-[110px] pointer-events-none" />
-      {/* Noise */}
       <svg aria-hidden="true" className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.02]">
         <filter id="detail-grain"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /></filter>
         <rect width="100%" height="100%" filter="url(#detail-grain)" />
@@ -73,16 +76,18 @@ const ConsultingDetail = () => {
       <div className="container mx-auto px-4 relative z-10">
 
         {/* Back */}
-        <Link to="/#consulting" className="inline-flex items-center gap-2 text-text-quaternary hover:text-accent transition-colors duration-200 mb-10 text-sm group">
+        <Link
+          to="/#work"
+          className="inline-flex items-center gap-2 text-text-quaternary hover:text-accent transition-colors duration-200 mb-10 text-sm group"
+        >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
-          <span>Back to Consulting Work</span>
+          <span>Back to Work</span>
         </Link>
 
         <div className="max-w-5xl mx-auto">
 
           {/* ── Hero header ── */}
           <div className="mb-12">
-            {/* Section label */}
             <div className="inline-flex items-center gap-2.5 mb-5">
               <div className="h-px w-8 bg-gradient-to-r from-transparent to-accent/50" />
               <span className="text-[11px] font-bold tracking-[0.22em] text-text-quaternary uppercase">Consulting Work</span>
@@ -148,8 +153,6 @@ const ConsultingDetail = () => {
 
             {/* Right: sticky sidebar */}
             <div className="space-y-5">
-
-              {/* Tech stack */}
               <div className="rounded-2xl glass-card p-5 sticky top-28">
                 <p className="text-[11px] font-bold text-text-quaternary tracking-[0.2em] uppercase mb-4">
                   Tech Stack

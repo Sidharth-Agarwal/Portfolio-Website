@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Github, Download } from 'lucide-react';
+import { ArrowRight, Github, Download, ChevronDown } from 'lucide-react';
 import CountUp from 'react-countup';
 import { TypeAnimation } from 'react-type-animation';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
@@ -39,7 +39,6 @@ const Hero = () => {
   const heroRef = useRef(null);
   const [firstName, lastName] = personal.name.split(' ');
 
-  // Init tsParticles engine once
   useEffect(() => {
     initParticlesEngine(async (engine) => {
       await loadSlim(engine);
@@ -157,7 +156,7 @@ const Hero = () => {
             {personal.bio}
           </p>
 
-          {/* CTAs — primary wrapped in MagneticButton */}
+          {/* CTAs */}
           <div
             className="flex flex-col sm:flex-row gap-3 mb-14 opacity-0 hero-reveal"
             style={{ animationDelay: '0.54s' }}
@@ -206,8 +205,32 @@ const Hero = () => {
               </React.Fragment>
             ))}
           </div>
+
         </div>
       </div>
+
+      {/* ── Scroll indicator ── */}
+      <div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10
+                   flex flex-col items-center gap-1.5 opacity-0 hero-reveal"
+        style={{ animationDelay: '0.9s' }}
+      >
+        <span className="text-[10px] font-bold tracking-[0.22em] text-text-quaternary uppercase">
+          Scroll
+        </span>
+        {/* Bouncing chevron */}
+        <ChevronDown
+          className="w-4 h-4 text-accent/60"
+          style={{ animation: 'heroScrollBounce 1.6s ease-in-out infinite' }}
+        />
+      </div>
+
+      <style>{`
+        @keyframes heroScrollBounce {
+          0%, 100% { transform: translateY(0);   opacity: 0.6; }
+          50%       { transform: translateY(5px); opacity: 1;   }
+        }
+      `}</style>
     </section>
   );
 };

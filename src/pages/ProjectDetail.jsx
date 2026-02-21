@@ -28,7 +28,11 @@ const DetailSection = ({ icon: Icon, title, children, delay = 0 }) => {
 const ProjectDetail = () => {
   const { projectId } = useParams();
   const navigate = useNavigate();
-  const project = portfolioData.projects.find(p => p.slug === projectId);
+
+  // Look up from the merged work array, filtered to projects only
+  const project = portfolioData.work.find(
+    p => p.slug === projectId && p.type === 'project'
+  );
 
   useEffect(() => {
     if (!project) setTimeout(() => navigate('/'), 2000);
@@ -57,9 +61,12 @@ const ProjectDetail = () => {
       <div className="container mx-auto px-4 relative z-10">
 
         {/* Back */}
-        <Link to="/#projects" className="inline-flex items-center gap-2 text-text-quaternary hover:text-accent transition-colors duration-200 mb-10 text-sm group">
+        <Link
+          to="/#work"
+          className="inline-flex items-center gap-2 text-text-quaternary hover:text-accent transition-colors duration-200 mb-10 text-sm group"
+        >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-200" />
-          <span>Back to Projects</span>
+          <span>Back to Work</span>
         </Link>
 
         <div className="max-w-5xl mx-auto">

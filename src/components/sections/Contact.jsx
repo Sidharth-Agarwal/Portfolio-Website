@@ -159,7 +159,7 @@ const Contact = () => {
       <div aria-hidden="true" className="absolute bottom-0 right-1/4 w-[440px] h-[440px] bg-accent-light/[0.06] rounded-full blur-[110px] pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <SectionTitle number="06" subtitle="Let's build something amazing together">
+        <SectionTitle number="05" subtitle="Let's build something amazing together">
           Get In Touch
         </SectionTitle>
 

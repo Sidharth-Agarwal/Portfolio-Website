@@ -9,13 +9,12 @@ import { portfolioData } from '../../data/portfolioData';
 const navLinks = [
   { label: 'About',      section: 'about'      },
   { label: 'Experience', section: 'experience' },
-  // { label: 'Projects',   section: 'projects'   },
-  { label: 'Consulting', section: 'consulting' },
+  { label: 'Work',       section: 'work'       },
   { label: 'Skills',     section: 'skills'     },
   { label: 'Contact',    section: 'contact'    },
 ];
 
-const sectionIds = ['about', 'experience', 'projects', 'consulting', 'skills', 'contact'];
+const sectionIds = ['about', 'experience', 'work', 'skills', 'contact'];
 
 const Navbar = () => {
   const location  = useLocation();

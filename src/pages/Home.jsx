@@ -2,8 +2,7 @@ import React from 'react';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Experience from '../components/sections/Experience';
-import Projects from '../components/sections/Projects';
-import Consulting from '../components/sections/Consulting';
+import Work from '../components/sections/Work';
 import Skills from '../components/sections/Skills';
 import Contact from '../components/sections/Contact';
 
@@ -13,8 +12,7 @@ const Home = () => {
       <Hero />
       <About />
       <Experience />
-      {/* <Projects /> */}
-      <Consulting />
+      <Work />
       <Skills />
       <Contact />
     </>

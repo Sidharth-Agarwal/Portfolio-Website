@@ -4,11 +4,13 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import MobileNav from './MobileNav';
 import PageTransition from '../common/PageTransition';
+import ScrollToTop from '../common/ScrollToTop';
+import SectionDots from '../common/SectionDots';
 
 const Layout = () => {
   const location = useLocation();
 
-  // Scroll to top on route change (Lenis handles smoothness)
+  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
@@ -33,8 +35,10 @@ const Layout = () => {
 
       <Footer />
 
-      {/* Glassmorphism bottom nav — visible on mobile only */}
+      {/* Fixed UI chrome */}
       <MobileNav />
+      <ScrollToTop />
+      <SectionDots />
     </div>
   );
 };

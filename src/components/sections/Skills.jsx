@@ -122,7 +122,7 @@ const Skills = () => {
 
       {/* Title (inside container so it aligns) */}
       <div className="container mx-auto px-4 relative z-10">
-        <SectionTitle number="05" subtitle="Technologies and tools I work with">
+        <SectionTitle number="04" subtitle="Technologies and tools I work with">
           Skills & Technologies
         </SectionTitle>
       </div>

@@ -9,8 +9,16 @@ export const portfolioData = {
     github: "https://github.com/sidharth-agarwal",
     leetcode: "https://leetcode.com/sidharth_2003",
     resume: "/Sidharth_Agarwal_Resume.pdf",
-    tagline: "Full-Stack Developer specializing in scalable web applications",
-    bio: "Passionate Software Engineer with expertise in building high-performance web applications. I specialize in backend development with Node.js and Python, and love creating elegant user experiences with React. Currently working on multiple projects at ADA Digital Analytics, where I architect secure, scalable solutions that make a real impact. Additionally, I work on consulting projects to keep those mind muscles engaged on different set of technologies."
+    tagline: "Full-Stack Engineer building scalable healthcare systems and enterprise React applications",
+
+    // One-liner used in the Hero section only — keep it tight
+    heroBio: "Software Engineer at ADA Digital Analytics, building HIPAA-compliant healthcare systems on Azure. I also consult on enterprise React applications — from government budget portals to manufacturing ERPs.",
+
+    // Two focused paragraphs used in the About section
+    bio: [
+      "I'm a Software Engineer at ADA Digital Analytics in Bengaluru, building HIPAA-compliant healthcare data systems on Azure — architecting RBAC layers, securing API endpoints, and cutting production bugs by 60% through rigorous test coverage. On the side I consult on enterprise React projects: a state budget portal handling multi-billion rupee allocations for Nagaland, a print manufacturing ERP, and an LMS serving 500+ users.",
+      "I'm currently building AthMech, a React Native cricket analytics app that processes match footage shot-by-shot — the kind of granular performance data that usually only exists at the professional level. I previously mentored 700+ students in C++ and DSA at Coding Ninjas, and that experience of explaining complex systems clearly still shapes how I write documentation and design APIs today.",
+    ],
   },
 
   experience: [

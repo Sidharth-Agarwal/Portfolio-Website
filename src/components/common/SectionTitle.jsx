@@ -4,13 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /**
  * Section heading with GSAP fade+slide reveal on scroll.
- *
- * Props:
- *  children  — main heading text
- *  subtitle  — smaller supporting line (optional)
- *  number    — "01", "02" … section index shown above
+ * Respects prefers-reduced-motion — snaps in instantly if set.
  */
 const SectionTitle = ({ children, subtitle, number }) => {
   const wrapRef     = useRef(null);
@@ -20,6 +19,22 @@ const SectionTitle = ({ children, subtitle, number }) => {
   const lineRef     = useRef(null);
 
   useEffect(() => {
+    const reduced = prefersReducedMotion();
+
+    // Collect all animated elements
+    const els = [
+      numberRef.current,
+      headingRef.current,
+      lineRef.current,
+      subtitleRef.current,
+    ].filter(Boolean);
+
+    // Snap visible immediately — no animation
+    if (reduced) {
+      gsap.set(els, { opacity: 1, y: 0, scaleX: 1 });
+      return;
+    }
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -29,7 +44,6 @@ const SectionTitle = ({ children, subtitle, number }) => {
         },
       });
 
-      // Number label
       if (numberRef.current) {
         tl.fromTo(
           numberRef.current,
@@ -39,7 +53,6 @@ const SectionTitle = ({ children, subtitle, number }) => {
         );
       }
 
-      // Heading — simple fade + slide
       if (headingRef.current) {
         tl.fromTo(
           headingRef.current,
@@ -49,7 +62,6 @@ const SectionTitle = ({ children, subtitle, number }) => {
         );
       }
 
-      // Underline
       if (lineRef.current) {
         tl.fromTo(
           lineRef.current,
@@ -59,7 +71,6 @@ const SectionTitle = ({ children, subtitle, number }) => {
         );
       }
 
-      // Subtitle
       if (subtitleRef.current) {
         tl.fromTo(
           subtitleRef.current,
@@ -75,7 +86,6 @@ const SectionTitle = ({ children, subtitle, number }) => {
 
   return (
     <div ref={wrapRef} className="text-center mb-16">
-      {/* Numbered anchor */}
       {number && (
         <div ref={numberRef} className="flex items-center justify-center gap-2.5 mb-5" style={{ opacity: 0 }}>
           <div className="h-px w-8 bg-gradient-to-r from-transparent to-accent/50" />
@@ -86,15 +96,12 @@ const SectionTitle = ({ children, subtitle, number }) => {
         </div>
       )}
 
-      {/* Main heading */}
       <h2
         ref={headingRef}
         className="relative inline-block font-black text-text-primary leading-tight text-5xl md:text-6xl"
         style={{ opacity: 0 }}
       >
         {children}
-
-        {/* Animated underline */}
         <div
           ref={lineRef}
           className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-[3px] w-12 rounded-full"
@@ -105,7 +112,6 @@ const SectionTitle = ({ children, subtitle, number }) => {
         />
       </h2>
 
-      {/* Subtitle */}
       {subtitle && (
         <p
           ref={subtitleRef}

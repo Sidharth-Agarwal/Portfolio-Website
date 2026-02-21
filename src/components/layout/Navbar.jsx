@@ -19,9 +19,9 @@ const sectionIds = ['about', 'experience', 'work', 'skills', 'contact'];
 const Navbar = () => {
   const location  = useLocation();
   const navigate  = useNavigate();
-  const [scrolled, setScrolled]       = useState(false);
-  const [mobileOpen, setMobileOpen]   = useState(false);
-  const [indicator, setIndicator]     = useState({ left: 0, width: 0, opacity: 0 });
+  const [scrolled, setScrolled]     = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [indicator, setIndicator]   = useState({ left: 0, width: 0, opacity: 0 });
 
   const activeSection  = useScrollSpy(sectionIds);
   const scrollProgress = useScrollProgress();
@@ -29,17 +29,17 @@ const Navbar = () => {
   const navBarRef = useRef(null);
   const itemRefs  = useRef({});
 
-  /* ── Scroll detection ─────────────────────────────────────────── */
+  /* ── Scroll detection ── */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* ── Close mobile on route change ────────────────────────────── */
+  /* ── Close mobile on route change ── */
   useEffect(() => { setMobileOpen(false); }, [location]);
 
-  /* ── Sliding indicator position ──────────────────────────────── */
+  /* ── Sliding indicator ── */
   useEffect(() => {
     const el  = itemRefs.current[activeSection];
     const bar = navBarRef.current;
@@ -48,16 +48,19 @@ const Navbar = () => {
     const frame = requestAnimationFrame(() => {
       const barRect = bar.getBoundingClientRect();
       const elRect  = el.getBoundingClientRect();
-      setIndicator({
-        left:    elRect.left - barRect.left,
-        width:   elRect.width,
-        opacity: 1,
-      });
+      setIndicator({ left: elRect.left - barRect.left, width: elRect.width, opacity: 1 });
     });
     return () => cancelAnimationFrame(frame);
   }, [activeSection]);
 
-  /* ── Smooth scroll helper ─────────────────────────────────────── */
+  /* ── Open command palette ── */
+  const openPalette = () => {
+    window.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }),
+    );
+  };
+
+  /* ── Scroll helper ── */
   const goToSection = (id) => {
     setMobileOpen(false);
     if (location.pathname !== '/') {
@@ -73,10 +76,9 @@ const Navbar = () => {
     if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
   };
 
-  /* ── Render ───────────────────────────────────────────────────── */
   return (
     <>
-      {/* ── Desktop floating pill ─────────────────────────────────── */}
+      {/* ── Desktop floating pill ── */}
       <header className="fixed top-5 inset-x-0 z-50 hidden md:flex justify-center pointer-events-none">
         <div
           className={`
@@ -98,9 +100,8 @@ const Navbar = () => {
 
           <div className="w-px h-4 bg-border/70 mx-0.5" />
 
-          {/* Nav items + sliding pill indicator */}
+          {/* Nav items + sliding pill */}
           <div ref={navBarRef} className="relative flex items-center">
-            {/* Sliding highlight */}
             <div
               aria-hidden="true"
               className="absolute top-0 h-full rounded-full
@@ -108,7 +109,6 @@ const Navbar = () => {
                          transition-all duration-300 ease-out pointer-events-none"
               style={indicator}
             />
-
             {navLinks.map(({ label, section }) => (
               <button
                 key={section}
@@ -136,6 +136,21 @@ const Navbar = () => {
 
           <div className="w-px h-4 bg-border/70 mx-0.5" />
 
+          {/* ⌘K palette trigger */}
+          <button
+            onClick={openPalette}
+            className="ml-1 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold
+                       text-text-quaternary border border-border/50
+                       hover:border-accent/40 hover:text-accent/80
+                       transition-all duration-300"
+            aria-label="Open command palette"
+            title="Open command palette (⌘K)"
+          >
+            <span>⌘K</span>
+          </button>
+
+          <div className="w-px h-4 bg-border/70 mx-0.5" />
+
           {/* Resume download */}
           <a
             href={portfolioData.personal.resume}
@@ -150,7 +165,7 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* Thin progress bar anchored under the pill */}
+        {/* Thin progress bar under the pill */}
         <div
           className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 h-[2px] rounded-full overflow-hidden
                      transition-all duration-500"
@@ -164,7 +179,7 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* ── Mobile nav ──────────────────────────────────────────────── */}
+      {/* ── Mobile nav ── */}
       <header className="fixed inset-x-0 top-0 z-50 md:hidden">
         <div
           className={`transition-all duration-300 ${
@@ -175,8 +190,21 @@ const Navbar = () => {
         >
           <div className="container mx-auto px-4 flex items-center justify-between h-16">
             <Link to="/" className="text-base font-bold gradient-text">SA</Link>
-            <div className="flex items-center gap-3">
-              {/* Resume download — mobile */}
+
+            <div className="flex items-center gap-2">
+              {/* ⌘K — mobile tap target */}
+              <button
+                onClick={openPalette}
+                className="flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-semibold
+                           text-text-quaternary border border-border/50
+                           hover:border-accent/40 hover:text-accent/80
+                           transition-all duration-300"
+                aria-label="Open command palette"
+              >
+                <span>⌘K</span>
+              </button>
+
+              {/* Resume — mobile */}
               <a
                 href={portfolioData.personal.resume}
                 download
@@ -187,7 +215,9 @@ const Navbar = () => {
                 <Download className="w-3 h-3" />
                 <span>CV</span>
               </a>
+
               <ThemeToggle />
+
               <button
                 onClick={() => setMobileOpen((p) => !p)}
                 className="p-2 rounded-xl text-text-secondary hover:text-accent

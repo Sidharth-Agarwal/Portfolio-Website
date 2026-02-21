@@ -4,16 +4,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 /**
  * Attaches a GSAP ScrollTrigger reveal animation to a container ref.
  * All direct children with class `gsap-reveal` animate in on scroll.
- *
- * @param {object} options
- *   @param {number}  options.stagger   - stagger between children (default 0.12)
- *   @param {number}  options.duration  - animation duration in seconds (default 0.8)
- *   @param {number}  options.yOffset   - initial Y offset in px (default 40)
- *   @param {string}  options.start     - ScrollTrigger start (default "top 85%")
- *   @param {boolean} options.once      - only play once (default true)
+ * Respects prefers-reduced-motion — elements snap in instantly if set.
  */
 export const useGSAPReveal = ({
   stagger  = 0.12,
@@ -30,6 +27,12 @@ export const useGSAPReveal = ({
 
     const targets = el.querySelectorAll('.gsap-reveal');
     if (!targets.length) return;
+
+    // If user prefers reduced motion, just make elements visible immediately
+    if (prefersReducedMotion()) {
+      gsap.set(targets, { opacity: 1, y: 0 });
+      return;
+    }
 
     gsap.set(targets, { opacity: 0, y: yOffset });
 

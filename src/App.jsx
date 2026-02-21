@@ -3,16 +3,17 @@ import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import router from './router';
 import CustomCursor from './components/common/CustomCursor';
+import CommandPalette from './components/common/CommandPalette';
 import Preloader from './components/common/Preloader';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 
 const AppInner = () => {
-  // Initialise Lenis + GSAP ScrollTrigger sync at the root level
   useSmoothScroll();
 
   return (
     <>
       <CustomCursor />
+      <CommandPalette />
       <RouterProvider router={router} />
     </>
   );
@@ -21,7 +22,6 @@ const AppInner = () => {
 const App = () => {
   const [loading, setLoading] = useState(true);
 
-  // Show preloader on very first visit per session
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2200);
     return () => clearTimeout(timer);

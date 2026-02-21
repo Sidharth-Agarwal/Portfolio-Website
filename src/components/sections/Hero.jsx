@@ -61,10 +61,8 @@ const Hero = () => {
       onMouseMove={onMouseMove}
       className="min-h-screen flex items-center bg-bg-primary pt-24 pb-16 relative overflow-hidden"
     >
-      {/* Aurora blobs */}
       <AuroraBackground />
 
-      {/* Particles */}
       {pReady && (
         <Particles
           id="hero-particles"
@@ -73,7 +71,6 @@ const Hero = () => {
         />
       )}
 
-      {/* SVG grain */}
       <svg aria-hidden="true" className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.025] z-[1]">
         <filter id="hero-grain">
           <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
@@ -82,7 +79,6 @@ const Hero = () => {
         <rect width="100%" height="100%" filter="url(#hero-grain)" />
       </svg>
 
-      {/* Mouse-tracked radial glow */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none z-[1] transition-all duration-[1400ms] ease-out"
@@ -112,7 +108,7 @@ const Hero = () => {
           </p>
 
           {/* Name */}
-          <div className="mb-10 opacity-0 hero-reveal" style={{ animationDelay: '0.25s' }}>
+          <div className="mb-8 opacity-0 hero-reveal" style={{ animationDelay: '0.25s' }}>
             <h1
               className="font-black text-text-primary leading-[0.86] tracking-tight select-none"
               style={{ fontSize: 'clamp(3.8rem, 9.5vw, 9rem)' }}
@@ -148,12 +144,12 @@ const Hero = () => {
             />
           </h2>
 
-          {/* Bio */}
+          {/* Short bio — one tight paragraph, no walls of text */}
           <p
-            className="text-sm text-text-tertiary mb-10 max-w-xl leading-relaxed opacity-0 hero-reveal"
+            className="text-sm text-text-tertiary mb-10 max-w-md leading-relaxed opacity-0 hero-reveal"
             style={{ animationDelay: '0.44s' }}
           >
-            {personal.bio}
+            {personal.heroBio}
           </p>
 
           {/* CTAs */}
@@ -209,7 +205,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* ── Scroll indicator ── */}
+      {/* Scroll indicator */}
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10
                    flex flex-col items-center gap-1.5 opacity-0 hero-reveal"
@@ -218,7 +214,6 @@ const Hero = () => {
         <span className="text-[10px] font-bold tracking-[0.22em] text-text-quaternary uppercase">
           Scroll
         </span>
-        {/* Bouncing chevron */}
         <ChevronDown
           className="w-4 h-4 text-accent/60"
           style={{ animation: 'heroScrollBounce 1.6s ease-in-out infinite' }}

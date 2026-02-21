@@ -74,7 +74,7 @@ const Preloader = ({ onComplete }) => {
             ref={(el) => (lettersRef.current[i] = el)}
             className="font-black text-5xl md:text-7xl leading-none"
             style={{
-              color: i < 2 ? 'rgb(var(--accent))' : 'var(--text-primary)',
+              color: i < 3 ? 'rgb(var(--accent))' : 'var(--text-primary)',
               opacity: 0,
             }}
           >
@@ -100,7 +100,7 @@ const Preloader = ({ onComplete }) => {
         className="mt-4 text-[11px] font-bold tracking-[0.3em] text-text-quaternary uppercase"
         style={{ opacity: 0 }}
       >
-        Portfolio
+        Portfolio Website
       </p>
     </div>
   );
